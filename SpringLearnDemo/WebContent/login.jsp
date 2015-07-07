@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<s:url var="authUrl" value="/static/j_spring_security_check"></s:url>
+<s:url var="authUrl" value="/SpringLearnDemo/j_spring_security_check"></s:url>
 <form id="form1" name="form1" method="post" action="${authUrl}">
   <table width="600" border="1">
     <tr>
@@ -19,21 +19,21 @@
     <tr>
       <td>username:</td>
       <td><label for="username"></label>
-      <input type="text" name="username" id="username" /></td>
+      <input type="text" name="j_username" id="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}" /></td>
     </tr>
     <tr>
       <td>password:</td>
-      <td><input type="text" name="password" id="password" /></td>
+      <td><input type="password" name="j_password" id="j_password" /></td>
     </tr>
     <tr>
       <td colspan="2"><input type="submit" name="button" id="button" value="提交" />
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="reset" name="button2" id="button2" value="重置" />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="checkbox" id="remember-me" name="_spring_security_remeber_me" />remember-me
+     
       
       </td>
     </tr>
+     <tr><td><input name="_spring_security_remember_me" type="checkbox"></td><td>Remember me on this computer.</td></tr>
   </table>
 </form>
 </body>
