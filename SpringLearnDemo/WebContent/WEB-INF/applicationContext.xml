@@ -40,28 +40,26 @@
 <mvc:resources mapping="/resources/**" location="/resources/*" />
 -->
 
+<!-- 配置数据源 -->
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+
+<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+<property name="url" value="jdbc:mysql://localhost:3306/test" />
+<property name="username" value="root" />
+<property name="password" value="root" />
+
+</bean>
+
+
 <!-- 启用mvc注解 -->
 <mvc:annotation-driven />
 
-<!-- 扫描component，controller，repository,service -->
+<!-- 扫描component，controller，repository,service 
 <context:component-scan base-package="com.demo.*">
 </context:component-scan>
-
-<!-- 配置flow execution 
-
-<flow:flow-executor id="flowExecutor" flow-registry="flowRegistry"></flow:flow-executor>
- flow registry 
-<flow:flow-registry id="flowRegistry" base-path="/WEB-INF/flows">
-<flow:flow-location-pattern value="*-flow.xml" />
-</flow:flow-registry>
-<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-<property name="flowRegistry" value="flowRegistry"></property>
-</bean>
-
-<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
-<property name="flowExecutor" value="flowExecutor"></property>
-</bean>
 -->
+
+<import resource="spring-security.xml"/>
 
 
 </beans>

@@ -19,10 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.entity.User;
 
 @Controller
-@RequestMapping(value="/UserController",method=RequestMethod.POST)
+@RequestMapping(value="/UserController")
 public class UserController {
 
-	@RequestMapping("/user")
+	@RequestMapping(value="/user",method=RequestMethod.POST)
 	public ModelAndView user(@RequestParam("photo")MultipartFile photo,HttpServletRequest request){
 		System.out.println("hello");
 		ModelAndView mav=new ModelAndView();

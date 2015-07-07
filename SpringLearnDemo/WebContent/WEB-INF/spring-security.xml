@@ -13,5 +13,47 @@
     http://www.springframework.org/schema/security/spring-security-3.0.xsd
 ">
 
+<http auto-config="true" use-expressions="true">
+<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/> 
+
+
+</http>
+
+<!-- 启用remember-me功能 
+<remember-me key="adminKey" token-validity-seconds="2419200" user-service-ref="userService"/>
+-->
+
+<!-- 配置内存用户，存储库 -->
+<user-service id="userService">
+<user name="zhangsan" password="zs1234" authorities="ROLE_USER"/>
+<user name="admin" password="admin123" authorities="ROLE_USER"/>
+</user-service>
+
+
+<!--
+<form-login  login-processing-url="/static/j_spring_security_check" login-page="/login" 
+authentication-failure-url="/login?login_erroe=t" />
+  登录需要权限 -->
+  <!--  
+<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/> 
+-->
+<!-- 表单提交必须用https，这样更安全 -->
+<!-- <intercept-url pattern="/from" requires-channel="https"/> -->
+<!-- logout -->
+<!-- <logout logout-url="/static/j_spring_security_logout"/> -->
+
+<!-- 配置数据库userservice -->
+<jdbc-user-service data-source-ref="dataSource" 
+users-by-username-query="select username,password from user where username=?"
+authorities-by-username-query="select username,password,'ROLE_ADMIN' from user where username=?"
+
+/>
+
+
+
+<!-- 将user-service装配到spring安全，认证管理中 -->
+<authentication-manager>
+<authentication-provider user-service-ref="userService"></authentication-provider>
+</authentication-manager>
 
 </beans:beans>
