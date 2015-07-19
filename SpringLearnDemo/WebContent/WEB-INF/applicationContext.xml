@@ -54,10 +54,10 @@
 <!-- 启用mvc注解 -->
 <mvc:annotation-driven />
 
-<!-- 扫描component，controller，repository,service 
+<!-- 扫描component，controller，repository,service -->
 <context:component-scan base-package="com.demo.*">
 </context:component-scan>
--->
+
 
 <import resource="spring-security.xml"/>
 

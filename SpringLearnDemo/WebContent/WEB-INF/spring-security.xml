@@ -14,36 +14,36 @@
 ">
 
 <http auto-config="true" use-expressions="true">
-<!-- <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>  -->
+<!-- <intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>  -->
 <intercept-url pattern="/login.jsp" filters="none" /> 
 <!--- 登录认证 -->
- <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=true" default-target-url="/index.jsp" /> 
-<!--- 注销处理 -->
- <logout logout-success-url="/SpringLearnDemo/j_spring_security_logout"/> 
+ <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=true" default-target-url="/jsp/user.jsp" /> 
+<!--- 注销处理
+ <logout logout-success-url="/SpringLearnDemo/j_spring_security_logout"/>  -->
+ <logout  logout-success-url="/login.jsp"  /> 
 <!--- 基本认证 -->
  <http-basic /> 
 
-<!-- 启用remember-me功能 -->
+<!-- 启用remember-me功能 
  <remember-me key="adminKey" token-validity-seconds="2419200" user-service-ref="userService"/> 
-
+-->
 
 <!-- 表单提交必须用https，这样更安全 
-<intercept-url pattern="/from" requires-channel="https"/> 
--->
+<intercept-url pattern="/UserController/user" requires-channel="https"/> 
+--> 
+
 </http>
 
 
 
 <!-- 配置内存用户，存储库 -->
 <user-service id="userService">
-<user name="zhangsan" password="zs1234" authorities="ROLE_USER"/>
-<user name="admin" password="admin123" authorities="ROLE_USER"/>
+<user name="zhangsan" password="zs1234" authorities="ROLE_ADMIN"/>
+<user name="admin" password="admin123" authorities="ROLE_ADMIN"/>
 </user-service>
 
 
 <!--
-<form-login  login-processing-url="/static/j_spring_security_check" login-page="/login" 
-authentication-failure-url="/login?login_erroe=t" />
   登录需要权限 -->
   <!--  
 <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/> 
@@ -65,4 +65,6 @@ authorities-by-username-query="select username,password,'ROLE_ADMIN' from user w
 <authentication-provider user-service-ref="userService"></authentication-provider>
 </authentication-manager>
 
+<!-- 方法级别的安全,启用方法级别安全注解 -->
+<global-method-security secured-annotations="enabled"></global-method-security>
 </beans:beans>

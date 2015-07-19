@@ -14,7 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>springLearnDemo</title>
 </head>
 <body>
-<form action="<%=basePath %>UserController/user" method="post" enctype="multipart/form-data" name="form1" id="form1" >
+<form action="<%=basePath %>UserController/hello" method="post" enctype="multipart/form-data" name="form1" id="form1" >
+  <a href="/SpringLearnDemo/j_spring_security_logout" /> >Logout</a>  
+  
   <table width="600" border="1">
     <tr>
       <td colspan="2">用户信息</td>
