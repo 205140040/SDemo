@@ -58,6 +58,21 @@
 <context:component-scan base-package="com.demo.*">
 </context:component-scan>
 
+<bean id="springRmiService" class="com.demo.service.impl.SpringRmiServiceImpl"></bean>
+
+<!-- 使用spring RMIServiceExporter发布RMI服务 -->
+<bean class="org.springframework.remoting.rmi.RmiServiceExporter" p:service-ref="springRmiService">
+
+<property name="serviceName" value="SpringRmiService"></property>
+<property name="serviceInterface"  value="com.demo.service.ISpringRmiService"></property>
+</bean>
+
+
+<!-- 配置客户端调用rmi,RMIProxyFactory 
+<bean id="rmiService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean"
+p:serviceUrl="rmi://localhost/SpringRmiService"
+p:serviceInterface="com.demo.test.ISpringRmiService"
+></bean>-->
 
 <import resource="spring-security.xml"/>
 

@@ -38,7 +38,7 @@
 
 <!-- 配置内存用户，存储库 -->
 <user-service id="userService">
-<user name="zhangsan" password="zs1234" authorities="ROLE_ADMIN"/>
+<user name="zhangsan" password="zs1234" authorities="ROLE_USER"/>
 <user name="admin" password="admin123" authorities="ROLE_ADMIN"/>
 </user-service>
 
@@ -66,5 +66,5 @@ authorities-by-username-query="select username,password,'ROLE_ADMIN' from user w
 </authentication-manager>
 
 <!-- 方法级别的安全,启用方法级别安全注解 -->
-<global-method-security secured-annotations="enabled"></global-method-security>
+<global-method-security  secured-annotations="enabled" ></global-method-security>
 </beans:beans>
