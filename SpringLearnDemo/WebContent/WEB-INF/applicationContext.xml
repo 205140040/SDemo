@@ -83,11 +83,11 @@ p:serviceInterface="com.demo.service.ISpringRmiService"
 </bean>
 -->
 
-<!-- 配置httpInvoker -->
+<!-- 配置httpInvoker-->
 <bean id="httpInvokerService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"
 p:service-ref="springRmiService"
 p:serviceInterface="com.demo.service.ISpringRmiService"
-></bean>
+></bean> 
 
 <!-- 配置httpInvoker 代理工厂 
 <bean id="hessianService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
@@ -97,8 +97,10 @@ p:serviceInterface="com.demo.test.ISpringRmiService"
 -->
 
 
-<!-- 配置spring jax-ws -->
-<bean class="org.springframework.remoting.jaxws.SimpleHttpServerJaxWsServiceExporter"></bean>
+<!-- 配置spring jax-ws 
+<bean class="org.springframework.remoting.jaxws.SimpleHttpServerJaxWsServiceExporter"
+
+></bean>-->
 
 <import resource="spring-security.xml"/>
 
