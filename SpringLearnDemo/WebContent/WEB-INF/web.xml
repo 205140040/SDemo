@@ -17,6 +17,19 @@
   <url-pattern>/</url-pattern>
   </servlet-mapping>
   
+  
+  <!-- 配置http invoker  servlet -->
+  <servlet>
+        <servlet-name>httpInvokerService</servlet-name>
+        <servlet-class>
+            org.springframework.web.context.support.HttpRequestHandlerServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>httpInvokerService</servlet-name>
+        <url-pattern>/remoting/HelloService</url-pattern>
+    </servlet-mapping>
+  
   <!-- spring监听器 -->
   <listener>
   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

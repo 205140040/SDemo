@@ -60,19 +60,45 @@
 
 <bean id="springRmiService" class="com.demo.service.impl.SpringRmiServiceImpl"></bean>
 
-<!-- 使用spring RMIServiceExporter发布RMI服务 -->
+<!-- 使用spring RMIServiceExporter发布RMI服务 
 <bean class="org.springframework.remoting.rmi.RmiServiceExporter" p:service-ref="springRmiService">
 
 <property name="serviceName" value="SpringRmiService"></property>
 <property name="serviceInterface"  value="com.demo.service.ISpringRmiService"></property>
 </bean>
+-->
 
+<!-- 使用Hessian服务 
+<bean id="hessianService" class="org.springframework.remoting.caucho.HessianServiceExporter"
+p:service-ref="springRmiService"
+p:serviceInterface="com.demo.service.ISpringRmiService"
+></bean>
+-->
 
-<!-- 配置客户端调用rmi,RMIProxyFactory 
-<bean id="rmiService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean"
-p:serviceUrl="rmi://localhost/SpringRmiService"
+<!-- 配置hessian URLmapping 
+<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<property name="mappings">
+<value>/demo.service=hessianService</value>
+</property>
+</bean>
+-->
+
+<!-- 配置httpInvoker -->
+<bean id="httpInvokerService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"
+p:service-ref="springRmiService"
+p:serviceInterface="com.demo.service.ISpringRmiService"
+></bean>
+
+<!-- 配置httpInvoker 代理工厂 
+<bean id="hessianService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+p:serviceUrl="http://localhost:8080/SpringLearnDemo/remoting/HelloService"
 p:serviceInterface="com.demo.test.ISpringRmiService"
-></bean>-->
+></bean>
+-->
+
+
+<!-- 配置spring jax-ws -->
+<bean class="org.springframework.remoting.jaxws.SimpleHttpServerJaxWsServiceExporter"></bean>
 
 <import resource="spring-security.xml"/>
 
