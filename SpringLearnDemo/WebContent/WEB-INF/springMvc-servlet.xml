@@ -33,6 +33,19 @@
 <property name="suffix" value=".jsp"></property>
 </bean>
 
+<!-- 配置多种视图解析器 -->
+<bean id="contentViewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+<property name="mediaTypes">
+<map>
+<entry key="json" value="application/json"></entry>
+<entry key="xml" value="text/xml"></entry>
+<entry key="html" value="text/html"></entry>
+</map>
+</property>
+
+<property name="defaultContentType" value="application/json"></property>
+</bean>
+
 <!-- 配置spring，支持文件上传 multipart 解析器 -->
 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 <property name="maxUploadSize" value="10000000" />
