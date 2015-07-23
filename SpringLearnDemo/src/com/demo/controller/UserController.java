@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ public class UserController {
 	 * 在url路径中添加参数
 	 */
 	@RequestMapping(value="/sayName",method=RequestMethod.GET)
-	@ResponseStatus(value=HttpStatus.NO_CONTENT)
+	//@ResponseStatus(value=HttpStatus.NO_CONTENT)
 	public @ResponseBody Object sayName(){
 		//System.out.println("name:"+name);
 		User user=new User();
@@ -65,7 +66,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/user")
-	public ModelAndView user(@RequestParam("photo")MultipartFile photo,HttpServletRequest request){
+	public ModelAndView user(@RequestBody User user, @RequestParam("photo")MultipartFile photo,HttpServletRequest request){
 		System.out.println("hello");
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/user");
