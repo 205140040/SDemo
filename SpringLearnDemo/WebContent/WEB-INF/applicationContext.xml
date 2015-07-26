@@ -114,7 +114,7 @@ p:serviceInterface="com.demo.test.ISpringRmiService"
 
 <!-- 配置activemq代理 -->
 <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
-<property name="brokerUrl" value="tcp://localhost:61616"></property>
+<property name="brokerURL" value="tcp://localhost:61616"></property>
 
 </bean>
 <!-- 配置队列 -->
@@ -134,11 +134,21 @@ p:serviceInterface="com.demo.test.ISpringRmiService"
 
 <!-- 配置消息驱动bean -->
 <bean id="alertHandlerImpl" class="com.demo.service.impl.AlertHandlerImpl"></bean>
+
+<!-- 配置jmsExporter -->
+<bean id="jmsExporter" class="org.springframework.jms.remoting.JmsInvokerServiceExporter"
+p:service-ref="alertService"
+p:serviceInterface="com.demo.service.AlertService"
+></bean>
 <!-- 配置消息监听器 -->
 <jms:listener-container connection-factory="connectionFactory">
-<jms:listener destination="SpringLeranDemo.alert.queue" ref="alertHadnlerImpl" method="processDemo"/>
+<jms:listener destination="SpringLeranDemo.alert.queue" 
+ref="jmsExporter" />
 
 </jms:listener-container>
+
+
+
 <import resource="spring-security.xml"/>
 
 
