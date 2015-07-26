@@ -11,6 +11,9 @@
     
     xmlns:flow="http://www.springframework.org/schema/webflow-config" 
     xmlns:security="http://www.springframework.org/schema/security"
+    
+     xmlns:jms="http://www.springframework.org/schema/jms"
+      xmlns:amq="http://www.springframework.org/schema/amq"
 	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -33,6 +36,12 @@
     
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security-3.0.xsd
+    
+     http://www.springframework.org/schema/jms
+    http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
+    
+     http://www.springframework.org/schema/amq
+    http://www.springframework.org/schema/amq/spring-amq-3.0.xsd
 	">
 
 <!-- 处理静态资源请求 
@@ -102,6 +111,34 @@ p:serviceInterface="com.demo.test.ISpringRmiService"
 
 ></bean>-->
 
+
+<!-- 配置activemq代理 -->
+<bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
+<property name="brokerUrl" value="tcp://localhost:61616"></property>
+
+</bean>
+<!-- 配置队列 -->
+<bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
+<constructor-arg value="SpringLeranDemo.queue"></constructor-arg>
+</bean>
+
+<!-- 配置主题 -->
+<bean id="topic" class="org.apache.activemq.command.ActiveMQTopic">
+<constructor-arg value="SpringLeranDemo.topic"></constructor-arg>
+</bean>
+
+<!-- 装配jms 模板 -->
+<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+<property name="connectionFactory" ref="connectionFactory"></property>
+</bean>
+
+<!-- 配置消息驱动bean -->
+<bean id="alertHandlerImpl" class="com.demo.service.impl.AlertHandlerImpl"></bean>
+<!-- 配置消息监听器 -->
+<jms:listener-container connection-factory="connectionFactory">
+<jms:listener destination="SpringLeranDemo.alert.queue" ref="alertHadnlerImpl" method="processDemo"/>
+
+</jms:listener-container>
 <import resource="spring-security.xml"/>
 
 
