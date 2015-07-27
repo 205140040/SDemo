@@ -14,7 +14,7 @@ public class TestRmi {
 	private ISpringRmiService service;
 	
 	@Autowired
-	@Qualifier("alertService")
+	@Qualifier("lingoService")
 	private AlertService alertService;
 	
 

@@ -13,7 +13,7 @@
     xmlns:security="http://www.springframework.org/schema/security"
     
      xmlns:jms="http://www.springframework.org/schema/jms"
-      xmlns:amq="http://www.springframework.org/schema/amq"
+      xmlns:amq="http://activemq.apache.org/schema/core"
 	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -40,8 +40,8 @@
      http://www.springframework.org/schema/jms
     http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
     
-     http://www.springframework.org/schema/amq
-    http://www.springframework.org/schema/amq/spring-amq-3.0.xsd
+    http://activemq.apache.org/schema/core 
+    http://activemq.apache.org/schema/core/activemq-core-5.2.0.xsd  
 	">
 
 <!-- 处理静态资源请求 
@@ -94,6 +94,24 @@ p:serviceInterface="com.demo.test.AlertService"
 <property name="queueName" value="SpringLernDemo.alert.queue"></property>
 
 </bean>
+
+<!-- 配置lingo代理工厂 -->
+<bean id="lingoService" class="org.logicblaze.lingo.jms.JmsProxyFactoryBean"
+p:connectionFactory-ref="connectionFactory"
+p:destination-ref="alertServiceQueue"
+p:service-ref="alertService"
+p:serviceInterface="com.demo.test.AlertService"
+>
+<property name="metadataStrategy">
+<bean id="metadataStrategy" class="org.logicblaze.lingo.SimpleMetadataStrategy">
+<constructor-arg value="true"></constructor-arg>
+</bean>
+</property>
+
+
+</bean>
+
+<amq:queue id="alertServiceQueue"  physicalName="SpringLeranDemo.alert.queue"></amq:queue>
 
 <!-- 配置JaxWs 代理工厂 
 <bean id="jaxService" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean"
