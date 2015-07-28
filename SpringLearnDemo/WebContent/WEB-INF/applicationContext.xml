@@ -57,7 +57,8 @@
        <property name="locations">    
            <list>  
            		<!-- 如果有多个，可以在下面列出来 -->  
-               <value>classpath:/db.properties</value>    
+               <value>classpath:/db.properties</value>  
+               <value>classpath:/mailserver.properties</value>     
            </list>    
        </property>    
    </bean>   
@@ -79,6 +80,16 @@
 <!-- 扫描component，controller，repository,service -->
 <context:component-scan base-package="com.demo.*">
 </context:component-scan>
+
+<!-- 配置邮件服务 -->
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
+p:host="${mailserver.host}"
+p:port="${mailserver.port}"
+p:username="${mailserver.username}"
+p:password="${mailserver.password}"
+>
+
+</bean>
 
 <bean id="springRmiService" class="com.demo.service.impl.SpringRmiServiceImpl"></bean>
 

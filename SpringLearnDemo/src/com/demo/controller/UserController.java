@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 
 import java.io.OutputStream;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.entity.User;
+import com.demo.service.MyMailService;
 
 @Controller
 @RequestMapping(value="/UserController")
 public class UserController {
 	
+	@Autowired
+	private MyMailService mailService;
 	
 	/**
 	 * 在url路径中添加参数
@@ -38,7 +43,13 @@ public class UserController {
 		//System.out.println("name:"+name);
 		User user=new User();
 		user.setName("zss");
-		
+		//发送邮件
+		try {
+			mailService.sendEmail("447531773@qq.com", user);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return user;
 	}
 	
