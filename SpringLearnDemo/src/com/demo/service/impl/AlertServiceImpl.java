@@ -18,13 +18,13 @@ import com.demo.service.AlertService;
  */
 @Service("alertService")
 public class AlertServiceImpl implements AlertService {
-	@Autowired
+	/*@Autowired
 	private JmsTemplate jmsTemplate;//注入jms模板
-
+*/
 	@Override
 	public void sendAlert(final User user) {
 		System.out.println("jms sender");
-		// TODO Auto-generated method stub
+		/*// TODO Auto-generated method stub
 		jmsTemplate.send(//发送消息
 			"SpringLeranDemo.alert.queue", new MessageCreator() {//指定目的地
 			
@@ -33,7 +33,7 @@ public class AlertServiceImpl implements AlertService {
 				// TODO Auto-generated method stub
 				return session.createObjectMessage(user);//创建消息
 			}
-		});
+		});*/
 	}
 
 }

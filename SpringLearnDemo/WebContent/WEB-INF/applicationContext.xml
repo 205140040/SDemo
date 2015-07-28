@@ -49,13 +49,26 @@
 <mvc:resources mapping="/resources/**" location="/resources/*" />
 -->
 
+<!-- 占位符读取属性文件
+如果未找到属性文件，则忽略错误，使用系统默认配置
+ -->
+<!-- 获取properties数据源文件 方式一 -->  
+<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">    
+       <property name="locations">    
+           <list>  
+           		<!-- 如果有多个，可以在下面列出来 -->  
+               <value>classpath:/db.properties</value>    
+           </list>    
+       </property>    
+   </bean>   
+
 <!-- 配置数据源 -->
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 
-<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-<property name="url" value="jdbc:mysql://localhost:3306/test" />
-<property name="username" value="root" />
-<property name="password" value="root" />
+<property name="driverClassName" value="${jdbc.driverClassName}" />
+<property name="url" value="${jdbc.url}" />
+<property name="username" value="${jdbc.username}" />
+<property name="password" value="${jdbc.password}" />
 
 </bean>
 
@@ -112,43 +125,52 @@ p:serviceInterface="com.demo.test.ISpringRmiService"
 ></bean>-->
 
 
-<!-- 配置activemq代理 -->
+<!-- 配置activemq代理 
 <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
 <property name="brokerURL" value="tcp://localhost:61616"></property>
 
 </bean>
-<!-- 配置队列 -->
+-->
+
+<!-- 配置队列 
 <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
 <constructor-arg value="SpringLeranDemo.queue"></constructor-arg>
 </bean>
+-->
 
-<!-- 配置主题 -->
+<!-- 配置主题 
 <bean id="topic" class="org.apache.activemq.command.ActiveMQTopic">
 <constructor-arg value="SpringLeranDemo.topic"></constructor-arg>
 </bean>
+-->
 
-<!-- 装配jms 模板 -->
+<!-- 装配jms 模板 
 <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 <property name="connectionFactory" ref="connectionFactory"></property>
 </bean>
+-->
 
-<!-- 配置消息驱动bean -->
+
+<!-- 配置消息驱动bean 
 <bean id="alertHandlerImpl" class="com.demo.service.impl.AlertHandlerImpl"></bean>
+-->
 
-<!-- 配置jmsExporter -->
+<!-- 配置jmsExporter 
 <bean id="jmsExporter" class="org.springframework.jms.remoting.JmsInvokerServiceExporter"
 p:service-ref="alertService"
 p:serviceInterface="com.demo.service.AlertService"
 ></bean>
-<!-- 配置消息监听器 -->
+-->
+
+<!-- 配置消息监听器 
 <jms:listener-container connection-factory="connectionFactory">
 <jms:listener destination="SpringLeranDemo.alert.queue" 
 ref="jmsExporter" />
 
 </jms:listener-container>
+-->
 
-
-<!-- 配置lingo -->
+<!-- 配置lingo 
 <bean id="lingoExporter" class="org.logicblaze.lingo.jms.JmsServiceExporter"
 p:connectionFactory-ref="connectionFactory"
 p:destination-ref="alertServiceQueue"
@@ -157,8 +179,8 @@ p:serviceInterface="com.demo.service.AlertService"
 
 >
 </bean>
-
-<amq:queue id="alertServiceQueue"  physicalName="SpringLeranDemo.alert.queue"></amq:queue>
+-->
+<!-- <amq:queue id="alertServiceQueue"  physicalName="SpringLeranDemo.alert.queue"></amq:queue> -->
 
 
 <import resource="spring-security.xml"/>

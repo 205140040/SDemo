@@ -81,12 +81,14 @@ p:serviceUrl="http://localhost:8080/SpringLearnDemo/remoting/HelloService"
 p:serviceInterface="com.demo.test.ISpringRmiService"
 ></bean>
 
-<!-- 配置activemq代理 -->
+<!-- 配置activemq代理 
 <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
 <property name="brokerURL" value="tcp://localhost:61616"></property>
 
 </bean>
-<!-- 配置jms代理工厂 -->
+-->
+
+<!-- 配置jms代理工厂 
 <bean id="alertService" class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean"
 p:serviceInterface="com.demo.test.AlertService"
 >
@@ -94,8 +96,10 @@ p:serviceInterface="com.demo.test.AlertService"
 <property name="queueName" value="SpringLernDemo.alert.queue"></property>
 
 </bean>
+-->
 
-<!-- 配置lingo代理工厂 -->
+
+<!-- 配置lingo代理工厂 
 <bean id="lingoService" class="org.logicblaze.lingo.jms.JmsProxyFactoryBean"
 p:connectionFactory-ref="connectionFactory"
 p:destination-ref="alertServiceQueue"
@@ -110,8 +114,9 @@ p:serviceInterface="com.demo.test.AlertService"
 
 
 </bean>
+-->
 
-<amq:queue id="alertServiceQueue"  physicalName="SpringLeranDemo.alert.queue"></amq:queue>
+<!-- <amq:queue id="alertServiceQueue"  physicalName="SpringLeranDemo.alert.queue"></amq:queue> -->
 
 <!-- 配置JaxWs 代理工厂 
 <bean id="jaxService" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean"

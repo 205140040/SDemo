@@ -13,9 +13,9 @@ public class TestRmi {
 	@Qualifier("hessianService")	
 	private ISpringRmiService service;
 	
-	@Autowired
+	/*@Autowired
 	@Qualifier("lingoService")
-	private AlertService alertService;
+	private AlertService alertService;*/
 	
 
 	
@@ -28,10 +28,10 @@ public class TestRmi {
 	
 	@RequestMapping("/sayJms")
 	public void sayJms(){
-		System.out.println(alertService);
+		/*System.out.println(alertService);
 		
 		alertService.sendAlert(new User());
-		System.out.println("jms");
+		System.out.println("jms");*/
 	}
 
 }
