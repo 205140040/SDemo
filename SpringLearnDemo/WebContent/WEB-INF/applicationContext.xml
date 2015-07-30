@@ -14,6 +14,8 @@
     
      xmlns:jms="http://www.springframework.org/schema/jms"
       xmlns:amq="http://activemq.apache.org/schema/core"
+      
+      xmlns:task="http://www.springframework.org/schema/task"  
 	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -42,6 +44,9 @@
     
     http://activemq.apache.org/schema/core 
     http://activemq.apache.org/schema/core/activemq-core-5.2.0.xsd  
+    
+    http://www.springframework.org/schema/task  
+http://www.springframework.org/schema/task/spring-task-3.0.xsd 
 	">
 
 <!-- 处理静态资源请求 
@@ -90,6 +95,10 @@ p:password="${mailserver.password}"
 >
 
 </bean>
+<!-- 使spring支持调度和异步方法 -->
+<task:annotation-driven /> 
+
+
 
 <bean id="springRmiService" class="com.demo.service.impl.SpringRmiServiceImpl"></bean>
 
