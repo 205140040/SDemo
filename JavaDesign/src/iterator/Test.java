@@ -9,7 +9,8 @@ public class Test {
 		bookShelf.appendBook(new Book("B西游记"));
 		bookShelf.appendBook(new Book("C红楼梦"));
 		bookShelf.appendBook(new Book("D水浒传"));
-		
+		bookShelf.appendBook(new Book("E水浒传"));
+		bookShelf.appendBook(new Book("F水浒传"));
 		Iterator iterator=bookShelf.iteartor();
 		while(iterator.hasNext()){
 			Book book=(Book)iterator.next();

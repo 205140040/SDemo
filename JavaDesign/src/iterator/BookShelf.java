@@ -1,6 +1,9 @@
 
 package iterator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * 
@@ -10,7 +13,7 @@ package iterator;
  */
 public class BookShelf implements Aggregate{
 	
-	private Book[] books;
+	private List<Book> books;
 	
 	private int last=0;
 	
@@ -19,7 +22,7 @@ public class BookShelf implements Aggregate{
 	
 	public BookShelf(int maxsize) {
 		super();
-		this.books=new Book[maxsize];
+		this.books=new ArrayList<Book>();
 	}
 
 	/**
@@ -31,11 +34,11 @@ public class BookShelf implements Aggregate{
 	 * @description 根据下标得到图书
 	 */
 	public Book getBookAt(int index){
-		return books[index];
+		return books.get(index);
 	}
 	
 	public void appendBook(Book book){
-		this.books[last]=book;
+		this.books.add(book);
 		last++;
 	}
 	
