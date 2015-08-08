@@ -13,6 +13,7 @@ public abstract class AbstractDisplay {
 			this.print();
 
 		}
+		
 		this.close();
 	}
 }
