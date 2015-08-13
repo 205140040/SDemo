@@ -11,7 +11,7 @@ public class CronServiceImpl {
 	/**
 	 * spring 任务调度
 	 */
-	@Scheduled(cron="0/5 * *  * * ?")
+	//@Scheduled(cron="0/5 * *  * * ?")
 	public void outDateCron(){
 		System.out.println("当前时间："+new Date().toLocaleString());
 	}

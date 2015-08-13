@@ -203,7 +203,7 @@ p:serviceInterface="com.demo.service.AlertService"
 <!-- <amq:queue id="alertServiceQueue"  physicalName="SpringLeranDemo.alert.queue"></amq:queue> -->
 
 
-<import resource="spring-security.xml"/>
+<!-- <import resource="spring-security.xml"/> -->
 
 
 </beans>
