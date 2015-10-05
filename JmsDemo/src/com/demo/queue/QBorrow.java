@@ -3,6 +3,7 @@ package com.demo.queue;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+import java.util.UUID;
 
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
@@ -49,6 +50,8 @@ public class QBorrow {
 			QueueSender qSender = qSession.createSender(requestQ);
 			qSender.send(msg);
 			// 等待查看贷款响应
+			UUID uuid=UUID.randomUUID();
+			System.out.println("uuid:"+uuid.toString());
 			String filter = "JMSCorrelationID='" + msg.getJMSMessageID() + "'";
 			QueueReceiver qReceiver = qSession.createReceiver(responseQ, filter);
 			TextMessage tmsg = (TextMessage) qReceiver.receive(50000);

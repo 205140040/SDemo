@@ -52,7 +52,7 @@ public class QLender implements MessageListener {
 			// 将结果发送回借方
 			TextMessage tmsg = qSession.createTextMessage();
 			tmsg.setText("yes");
-			tmsg.setJMSCorrelationID(message.getJMSCorrelationID());
+			tmsg.setJMSCorrelationID(message.getJMSMessageID());
 			QueueSender qSender = qSession.createSender((Queue) message.getJMSReplyTo());
 			qSender.send(tmsg);
 			System.out.println("等待借款请求.....");
