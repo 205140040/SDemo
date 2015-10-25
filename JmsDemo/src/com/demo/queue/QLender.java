@@ -25,6 +25,7 @@ public class QLender implements MessageListener {
 
 	public QLender(String queuecf, String requestQueue) {
 		super();
+		
 		try {
 			Context ctx = new InitialContext();
 			QueueConnectionFactory qFactory = (QueueConnectionFactory) ctx.lookup(queuecf);
