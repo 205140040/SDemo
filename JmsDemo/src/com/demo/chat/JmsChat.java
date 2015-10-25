@@ -24,6 +24,7 @@ public class JmsChat implements MessageListener{
 	
 	private TopicConnection connection;
 	
+	
 	private String username;
 	/**
 	 * ³õÊ¼»¯ÁÄÌì
