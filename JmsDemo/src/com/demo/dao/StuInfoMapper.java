@@ -1,5 +1,8 @@
 package com.demo.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.demo.vo.StuInfo;
 
 public interface StuInfoMapper {
@@ -14,4 +17,8 @@ public interface StuInfoMapper {
     int updateByPrimaryKeySelective(StuInfo record);
 
     int updateByPrimaryKey(StuInfo record);
+
+    Map<Object, Object> selectUserMap(Integer id);
+
+	List<StuInfo> selectOne();
 }

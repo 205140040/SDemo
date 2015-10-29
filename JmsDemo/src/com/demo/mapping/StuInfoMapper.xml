@@ -79,4 +79,48 @@
       bir_day = #{birDay,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectUserMap" 
+  resultType="java.util.Map" parameterType="java.lang.Integer">
+  	 select 
+    <include refid="Base_Column_List" />
+    from stu_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 单个对象关联 -->
+  <select id="selectOne" resultMap="OneMap">
+		 SELECT
+		 	s.id,
+			s. NAME,
+			s.sex,
+			s.bir_day,
+			u. NAME AS u_name,
+			u.sex AS u_sex,
+			u.bir_day AS u_bir_day,
+			ul. NAME AS ul_name,
+			ul.sex AS ul_sex,
+			ul.bir_day AS ul_bir_day
+		FROM
+			stu_info s
+		LEFT JOIN user_info u ON s.id = u.id
+		LEFT JOIN user_info ul ON s.id = ul.s_id
+		
+  </select>
+   <resultMap id="OneMap" type="com.demo.vo.StuInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="bir_day" property="birDay" jdbcType="DATE" />
+    <association property="user" column="u.id" resultMap="UserMap"></association>
+    <collection property="userList" ofType="com.demo.vo.UserInfo" column="ul.s_id" resultMap="UserList"></collection>
+  </resultMap>
+   <resultMap id="UserMap" type="com.demo.vo.UserInfo" >
+    <result column="u_name" property="name" jdbcType="VARCHAR" />
+    <result column="u_sex" property="sex" jdbcType="VARCHAR" />
+    <result column="u_bir_day" property="birDay" jdbcType="DATE" />
+  </resultMap>
+   <resultMap id="UserList" type="com.demo.vo.UserInfo" >
+    <result column="ul_name" property="name" jdbcType="VARCHAR" />
+    <result column="ul_sex" property="sex" jdbcType="VARCHAR" />
+    <result column="ul_bir_day" property="birDay" jdbcType="DATE" />
+  </resultMap>
 </mapper>

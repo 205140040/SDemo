@@ -1,5 +1,8 @@
 package com.demo.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +23,19 @@ public class StudentServiceImpl implements IStudentService {
     }
 
 	@Override
+	public Map<Object, Object> selectUserMap(Integer id) {
+		return mapper.selectUserMap(id);
+	}
+
+	@Override
 	public  int insertSelective(StuInfo record){
     	return mapper.insertSelective(record);
     }
+
+	@Override
+	public List<StuInfo> selectOne() {
+		return mapper.selectOne();
+	}
 
 	@Override
 	public  StuInfo selectByPrimaryKey(Integer id){

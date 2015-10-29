@@ -1,6 +1,8 @@
 package com.demo.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class StuInfo {
     private Integer id;
@@ -10,8 +12,30 @@ public class StuInfo {
     private String sex;
 
     private Date birDay;
+    
+    private UserInfo user;
+    
+    private List<UserInfo> userList=new ArrayList<>();
+    
+    
 
-    public Integer getId() {
+    public List<UserInfo> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<UserInfo> userList) {
+		this.userList = userList;
+	}
+
+	public UserInfo getUser() {
+		return user;
+	}
+
+	public void setUser(UserInfo user) {
+		this.user = user;
+	}
+
+	public Integer getId() {
         return id;
     }
 
