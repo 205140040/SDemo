@@ -150,4 +150,8 @@
   size="1024"
   >
   </cache>
+  <!-- sqlBuilder动态生成sql -->
+  <select id="selectGenSql" parameterType="com.demo.vo.StuInfo" resultMap="OneMap">
+  ${sql}
+  </select>
 </mapper>

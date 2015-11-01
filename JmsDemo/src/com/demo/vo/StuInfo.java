@@ -21,10 +21,20 @@ public class StuInfo implements Serializable{
     private List<Integer> idlist;
     
     
+    private String sql;
+    
     
     
 
-    public List<Integer> getIdlist() {
+    public String getSql() {
+		return sql;
+	}
+
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
+
+	public List<Integer> getIdlist() {
 		return idlist;
 	}
 

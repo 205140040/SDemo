@@ -38,6 +38,11 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	@Override
+	public List<StuInfo> selectGenSql(StuInfo search) {
+		return mapper.selectGenSql(search);
+	}
+
+	@Override
 	public  StuInfo selectByPrimaryKey(Integer id){
     	return mapper.selectByPrimaryKey(id);
     }

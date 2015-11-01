@@ -21,6 +21,8 @@ public interface StuInfoMapper {
     Map<Object, Object> selectUserMap(Integer id);
 
 	List<StuInfo> selectOne(StuInfo search);
+
+	List<StuInfo> selectGenSql(StuInfo search);
 	
 	
 }

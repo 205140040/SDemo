@@ -23,4 +23,6 @@ public interface IStudentService {
 	
 	List<StuInfo> selectOne(StuInfo search);
 
+	List<StuInfo> selectGenSql(StuInfo search);
+
 }
