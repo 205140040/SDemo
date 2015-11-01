@@ -20,5 +20,7 @@ public interface StuInfoMapper {
 
     Map<Object, Object> selectUserMap(Integer id);
 
-	List<StuInfo> selectOne();
+	List<StuInfo> selectOne(StuInfo search);
+	
+	
 }

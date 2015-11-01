@@ -1,8 +1,9 @@
 package com.demo.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserInfo {
+public class UserInfo implements Serializable{
     private Integer id;
 
     private String name;

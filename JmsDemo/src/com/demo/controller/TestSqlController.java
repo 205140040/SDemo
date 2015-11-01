@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,10 @@ public class TestSqlController {
 		System.out.println(studentService);
 		Map<Object, Object> map=studentService.selectUserMap(1);
 		System.out.println("name:"+map.get("name"));
-		List<StuInfo> stuInfos=studentService.selectOne();
+		StuInfo search=new StuInfo();
+		Integer[] ids={1,2,3};
+		search.setIdlist(Arrays.asList(ids));//设置主键in 条件
+		List<StuInfo> stuInfos=studentService.selectOne(search);
 		System.out.println(JSON.toJSONString(stuInfos));
 		return stuInfos;
 	}

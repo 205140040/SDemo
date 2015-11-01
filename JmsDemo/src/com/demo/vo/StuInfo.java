@@ -1,10 +1,10 @@
 package com.demo.vo;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class StuInfo {
+public class StuInfo implements Serializable{
     private Integer id;
 
     private String name;
@@ -15,11 +15,24 @@ public class StuInfo {
     
     private UserInfo user;
     
-    private List<UserInfo> userList=new ArrayList<>();
+    private List<UserInfo> userList;
+    
+    //foreach²éÑ¯²ÎÊý
+    private List<Integer> idlist;
+    
+    
     
     
 
-    public List<UserInfo> getUserList() {
+    public List<Integer> getIdlist() {
+		return idlist;
+	}
+
+	public void setIdlist(List<Integer> idlist) {
+		this.idlist = idlist;
+	}
+
+	public List<UserInfo> getUserList() {
 		return userList;
 	}
 

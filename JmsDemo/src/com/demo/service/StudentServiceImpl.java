@@ -33,8 +33,8 @@ public class StudentServiceImpl implements IStudentService {
     }
 
 	@Override
-	public List<StuInfo> selectOne() {
-		return mapper.selectOne();
+	public List<StuInfo> selectOne(StuInfo search) {
+		return mapper.selectOne(search);
 	}
 
 	@Override
