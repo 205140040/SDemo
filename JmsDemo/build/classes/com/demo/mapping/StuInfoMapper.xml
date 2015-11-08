@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.dao.StuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.vo.StuInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="bir_day" property="birDay" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, sex, bir_day
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stu_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stu_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.vo.StuInfo" >
+    insert into stu_info (id, name, sex, 
+      bir_day)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{birDay,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.vo.StuInfo" >
+    insert into stu_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birDay != null" >
+        bir_day,
+      </if>
+    </trim>
+    <!-- trim 标签 -->
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birDay != null" >
+        #{birDay,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.vo.StuInfo" >
+    update stu_info
+    <!-- set标签 -->
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birDay != null" >
+        bir_day = #{birDay,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.vo.StuInfo" >
+    update stu_info
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      bir_day = #{birDay,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--返回map对象  -->
+  <select id="selectUserMap" 
+  resultType="java.util.Map" parameterType="java.lang.Integer">
+  	 select 
+    <include refid="Base_Column_List" />
+    from stu_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 单个对象关联 -->
+  <select id="selectOne" resultMap="OneMap" parameterType="com.demo.vo.StuInfo">
+		 SELECT
+		 	s.id,
+			s. NAME,
+			s.sex,
+			s.bir_day,
+			u. NAME AS u_name,
+			u.sex AS u_sex,
+			u.bir_day AS u_bir_day,
+			ul. NAME AS ul_name,
+			ul.sex AS ul_sex,
+			ul.bir_day AS ul_bir_day
+		FROM
+			stu_info s
+		LEFT JOIN user_info u ON s.id = u.id
+		LEFT JOIN user_info ul ON s.id = ul.s_id
+		<!--where  -->
+		<where>
+		<!-- if,choose -->
+		<choose>
+		<when test="null!=name and ''!=name">
+		AND name like concat('%',#{name},'%')
+		</when>
+		</choose>
+		<if test="null!=sex and ''!=sex">
+				AND sex like concat('%',#{sex},'%')
+		</if>
+		<if test="null!=idlist">
+			AND s.id in 
+			<foreach item="l" index="index" collection="idlist" open="(" close=")" separator=",">
+				#{l}
+			</foreach>
+		</if>
+		</where>
+  </select>
+   <resultMap id="OneMap" type="com.demo.vo.StuInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="bir_day" property="birDay" jdbcType="DATE" />
+    <association property="user" column="u.id" resultMap="UserMap"></association>
+    <collection property="userList" ofType="com.demo.vo.UserInfo" column="ul.s_id" resultMap="UserList"></collection>
+  </resultMap>
+   <resultMap id="UserMap" type="com.demo.vo.UserInfo" >
+    <result column="u_name" property="name" jdbcType="VARCHAR" />
+    <result column="u_sex" property="sex" jdbcType="VARCHAR" />
+    <result column="u_bir_day" property="birDay" jdbcType="DATE" />
+  </resultMap>
+   <!-- 返回关联list -->
+   <resultMap id="UserList" type="com.demo.vo.UserInfo" >
+    <result column="ul_name" property="name" jdbcType="VARCHAR" />
+    <result column="ul_sex" property="sex" jdbcType="VARCHAR" />
+    <result column="ul_bir_day" property="birDay" jdbcType="DATE" />
+  </resultMap>
+  <!--启用缓存  -->
+  <cache eviction="FIFO"
+  readOnly="false"
+  size="1024"
+  >
+  </cache>
+  <!-- sqlBuilder动态生成sql -->
+  <select id="selectGenSql" parameterType="com.demo.vo.StuInfo" resultMap="OneMap">
+  ${sql}
+  </select>
+</mapper>

@@ -13,7 +13,7 @@ public class TestAnnotation {
 	
 	@UseCase(id=2,name="ÀîËÄ",token="223456")
 	public void sayHello2(){
-		System.out.println("hello");
+		System.out.println("HELLO");
 	}
 	
 	@UseCase(id=3,name="½´×Ï",token="323456")
