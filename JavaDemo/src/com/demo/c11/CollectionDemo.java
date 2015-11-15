@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class CollectionDemo {
@@ -25,6 +26,13 @@ public class CollectionDemo {
 		map1.put(2, "tow");
 		map1.put(3, "three");
 		System.out.println(map1);
-
+		Map<String, Object> map=new HashMap<>();
+		map.put("1", "one");
+		map.put("2", "tow");
+		map.put("3", "three");
+		Set<Entry<String, Object>> mapset=map.entrySet();
+		for(Entry<String, Object> e:mapset){
+			System.out.println(e.getKey()+"\t"+e.getValue());
+		}
 	}
 }
