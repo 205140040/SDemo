@@ -1,7 +1,5 @@
 package com.demo.c12.exception;
 
-import java.util.Set;
-
 public class TestException {
 	public static void main(String[] args) {
 		try {
