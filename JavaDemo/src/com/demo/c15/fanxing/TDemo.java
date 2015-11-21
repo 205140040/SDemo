@@ -9,15 +9,16 @@ import java.util.List;
  * @param <Type>
  */
 public class TDemo <Type>{
-	private Type t;
+	private Type type;
 	List<Type> list;
 
-	public Type getT() {
-		return t;
+
+	public Type getType() {
+		return type;
 	}
 
-	public void setT(Type t) {
-		this.t = t;
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 	public List<Type> getList() {
@@ -28,5 +29,11 @@ public class TDemo <Type>{
 		this.list = list;
 	}
 	
-	
+	/**
+	 * 泛型方法
+	 * 
+	 */
+	public <T> void typeMethod(T t){
+		System.out.println(t);
+	}
 }
