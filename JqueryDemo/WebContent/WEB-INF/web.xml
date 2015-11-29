@@ -14,7 +14,7 @@
   </servlet>
   <servlet-mapping>
   <servlet-name>springMvc</servlet-name>
-  <url-pattern>*.spring</url-pattern>
+  <url-pattern>/</url-pattern>
   </servlet-mapping>
   
   <!-- spring监听器 -->
