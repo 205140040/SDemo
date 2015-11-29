@@ -57,5 +57,6 @@ public class ArraysDemo {
 		for (Integer s : sorts) {
 			System.out.print(s + "\t");
 		}
+		System.out.println(555);
 	}
 }
