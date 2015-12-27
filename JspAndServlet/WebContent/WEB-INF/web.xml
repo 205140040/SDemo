@@ -36,6 +36,8 @@
 			<param-name>pwd</param-name>
 			<param-value>666</param-value>
 		</init-param>
+		<!--启动时首先加载 -->
+		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>initServlet</servlet-name>
@@ -47,9 +49,28 @@
 		<param-name>username</param-name>
 		<param-value>jiangzi</param-value>
 	</context-param>
+	<!-- 配置过滤器 -->
+	<filter>
+		<filter-name>filter1</filter-name>
+		<filter-class>c001.Filter1</filter-class>
+	</filter>
+	<!--为servlet制定filter -->
+	<filter-mapping>
+		<filter-name>filter1</filter-name>
+		<servlet-name>initServlet</servlet-name>
+	</filter-mapping>
 	<!-- 配置欢迎页面 -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-
+	<!-- 配置错误页面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/jsp/404.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/WEB-INF/jsp/null.jsp</location>
+	</error-page>
 </web-app>

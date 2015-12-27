@@ -37,7 +37,6 @@ public class InitServlet extends HttpServlet {
 		out.println("this is init servlet<br>");
 		out.println("name:" + username + "\tpwd:" + pwd);
 		out.println("<br>上下文参数:name:" + context.getInitParameter("username"));
-
 		out.close();
 	}
 

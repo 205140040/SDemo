@@ -18,7 +18,9 @@ public class Servlet1 extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-
+		Integer a = null;
+		Integer b = 2;
+		System.out.println(a / b);
 		out.println("this is servlet1");
 		out.close();
 	}
