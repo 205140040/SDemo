@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<!-- 定义servlet -->
+	<servlet>
+		<description>servlet1</description>
+		<servlet-name>servlet1</servlet-name>
+		<servlet-class>c001.Servlet1</servlet-class>
+	</servlet>
+	<!-- 定义servlet url -->
+	<servlet-mapping>
+		<servlet-name>servlet1</servlet-name>
+		<url-pattern>/servlet1</url-pattern>
+	</servlet-mapping>
+	<!-- 为jsp命名 -->
+	<servlet>
+		<servlet-name>jsp1</servlet-name>
+		<jsp-file>/WEB-INF/jsp/jsp1.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsp1</servlet-name>
+		<url-pattern>/jsp1</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置初始化参数 -->
+	<servlet>
+		<servlet-name>initServlet</servlet-name>
+		<servlet-class>c001.InitServlet</servlet-class>
+		<init-param>
+			<param-name>username</param-name>
+			<param-value>zhangsan</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pwd</param-name>
+			<param-value>666</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>initServlet</servlet-name>
+		<url-pattern>/initServlet</url-pattern>
+	</servlet-mapping>
+	<!-- 应用程序上下文参数 -->
+	<context-param>
+		<description>应用程序上下文参数</description>
+		<param-name>username</param-name>
+		<param-value>jiangzi</param-value>
+	</context-param>
+	<!-- 配置欢迎页面 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
