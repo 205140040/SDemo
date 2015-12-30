@@ -74,27 +74,14 @@
 		<location>/WEB-INF/jsp/null.jsp</location>
 	</error-page>
 	<!-- 登录验证 -->
-	<login-config>
-		<!-- 认证方式为form -->
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/WEB-INF/jsp/login.jsp</form-login-page>
-			<form-error-page>/WEB-INF/jsp/login_error.jsp</form-error-page>
-		</form-login-config>
-	</login-config>
+	<!-- <login-config> 认证方式为form <auth-method>FORM</auth-method> <form-login-config> 
+		<form-login-page>/WEB-INF/jsp/login.jsp</form-login-page> <form-error-page>/WEB-INF/jsp/login_error.jsp</form-error-page> 
+		</form-login-config> </login-config> -->
 	<!--限制web资源访问 -->
-	<security-constraint>
-		<!-- 限制的url -->
-		<web-resource-collection>
-			<web-resource-name>servlet1</web-resource-name>
-			<url-pattern>/servlet1</url-pattern>
-		</web-resource-collection>
-		<!-- 只有这些用户可以访问该url -->
-		<auth-constraint>
-			<role-name>admin</role-name>
-			<role-name>jiangzi</role-name>
-		</auth-constraint>
-	</security-constraint>
+	<!-- <security-constraint> 限制的url <web-resource-collection> <web-resource-name>servlet1</web-resource-name> 
+		<url-pattern>/servlet1</url-pattern> </web-resource-collection> 只有这些用户可以访问该url 
+		<auth-constraint> <role-name>admin</role-name> <role-name>jiangzi</role-name> 
+		</auth-constraint> </security-constraint> -->
 	<!-- 控制回话失效时间 -->
 	<session-config>
 		<!--15分钟失效 -->
