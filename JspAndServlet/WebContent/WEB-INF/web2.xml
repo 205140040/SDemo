@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<!-- 控制回话失效时间 -->
+	<session-config>
+		<!-- 15分钟失效 -->
+		<session-timeout>15</session-timeout>
+	</session-config>
+	<!-- ipFilter -->
+	<filter>
+		<filter-name>ipFilter</filter-name>
+		<filter-class>c001.IpFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ipFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 配置公司名称监听器 -->
+	<context-param>
+		<param-name>companyName</param-name>
+		<param-value>com.yosemite</param-value>
+	</context-param>
+	<listener>
+		<listener-class>c001.CompanyContextListener</listener-class>
+	</listener>
+	<!-- 配置欢迎页面 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<!-- 配置错误页面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/jsp/404.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/WEB-INF/jsp/null.jsp</location>
+	</error-page>
+	<!-- 定义servlet -->
+	<servlet>
+		<description>servlet1</description>
+		<servlet-name>servlet1</servlet-name>
+		<servlet-class>c001.Servlet1</servlet-class>
+	</servlet>
+	<!-- 定义servlet url -->
+	<servlet-mapping>
+		<servlet-name>servlet1</servlet-name>
+		<url-pattern>/servlet1</url-pattern>
+	</servlet-mapping>
+</web-app>
