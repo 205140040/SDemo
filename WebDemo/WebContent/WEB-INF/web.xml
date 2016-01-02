@@ -85,7 +85,7 @@
 	<!-- 控制回话失效时间 -->
 	<session-config>
 		<!--15分钟失效 -->
-		<session-timeout>15</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>
 	<!-- 配置jsp taglib -->
 	<!-- <jsp-config> <taglib> <taglib-uri>/taglib1</taglib-uri> <taglib-location>/WEB-INF/tlds/taglib1.tld</taglib-location> 
@@ -111,5 +111,13 @@
 	</context-param>
 	<listener>
 		<listener-class>c001.CompanyContextListener</listener-class>
+	</listener>
+	<!-- sessionListener -->
+	<listener>
+		<listener-class>c001.SessionCounter</listener-class>
+	</listener>
+	<!-- requestListener -->
+	<listener>
+		<listener-class>c001.MyRequestListener</listener-class>
 	</listener>
 </web-app>

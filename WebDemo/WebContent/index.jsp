@@ -12,5 +12,10 @@ this is index.jsp
 <br>
 <h1>公司名称：${applicationScope.companyName }</h1>
 hello wolrd!
+<br>
+<h2>当前sessionCount：${sessionCount.currentCount }</h2>
+<h2>maxCount：${sessionCount.maxCount }</h2>
+<h2>totalCount：${sessionCount.totalCount }</h2>
+
 </body>
 </html>
