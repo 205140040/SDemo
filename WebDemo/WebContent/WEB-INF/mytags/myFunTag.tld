@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<!-- 自定义标签描述文件 -->
+	<tlib-version>1.0</tlib-version>
+	<short-name>MyFunTag</short-name>
+	<tag>
+		<description>MyFunTag</description>
+		<name>MyFunTag</name>
+		<tag-class>mytags.SimpleTagOne</tag-class>
+		<body-content>scriptless</body-content>
+		<function>
+			<name>MyFunTag</name>
+			<function-class>mytags.MyFunTag</function-class>
+			<function-signature>java.lang.String info()</function-signature>
+		</function>
+
+	</tag>
+</taglib>
