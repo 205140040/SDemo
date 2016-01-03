@@ -11,9 +11,22 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
  *
  */
 public class SimpleTagOne extends SimpleTagSupport {
+	/**
+	 * ±Í«© Ù–‘
+	 */
+	private String userName;
+	
 	@Override
 	public void doTag() throws JspException, IOException {
 		JspWriter jspWriter = this.getJspContext().getOut();
-		jspWriter.println("<b>hello World!</b>");
+		jspWriter.println("<b>"+this.getUserName()+"ƒ„∫√!</b>");
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }
