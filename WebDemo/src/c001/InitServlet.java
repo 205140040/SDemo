@@ -2,6 +2,8 @@ package c001;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -9,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import mytags.Student;
 
 public class InitServlet extends HttpServlet {
 
@@ -26,6 +30,13 @@ public class InitServlet extends HttpServlet {
 		username = config.getInitParameter("username");
 		pwd = config.getInitParameter("pwd");
 		System.out.println("name:" + username + "\tpwd:" + pwd);
+		ServletContext context=getServletContext();
+		context.setAttribute("username", username);
+		List<Student> sList=new ArrayList<>();
+		sList.add(new Student("张三",18,"男"));
+		sList.add(new Student("李四",18,"女"));
+		sList.add(new Student("酱紫",19,"女"));
+		context.setAttribute("sList", sList);
 	}
 
 	@Override

@@ -4,16 +4,23 @@
 	version="2.0">
 	<!-- 自定义标签描述文件 -->
 	<tlib-version>1.0</tlib-version>
-	<short-name>tag1</short-name>
+	<short-name>myForeachTag</short-name>
 	<tag>
-		<description>tag1demo</description>
-		<name>tag1</name>
-		<tag-class>mytags.SimpleTagOne</tag-class>
-		<body-content>empty</body-content>
+		<description>myForeachTag</description>
+		<name>myForeachTag</name>
+		<tag-class>mytags.MyForeachTag</tag-class>
+		<body-content>scriptless</body-content>
 		<attribute>
 			<description>属性</description>
-			<name>userName</name>
-			<required>false</required>
+			<name>list</name>
+			<required>true</required>
+			<!-- 允许动态赋值 -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>属性</description>
+			<name>var</name>
+			<required>true</required>
 			<!-- 允许动态赋值 -->
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

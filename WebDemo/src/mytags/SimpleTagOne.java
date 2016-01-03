@@ -6,20 +6,20 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 /**
- * ×Ô¶¨Òå±êÇ©
+ * ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ç©
  * @author 20514
  *
  */
 public class SimpleTagOne extends SimpleTagSupport {
 	/**
-	 * ±êÇ©ÊôÐÔ
+	 * è‡ªå®šä¹‰å±žæ€§
 	 */
 	private String userName;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
 		JspWriter jspWriter = this.getJspContext().getOut();
-		jspWriter.println("<b>"+this.getUserName()+"ÄãºÃ!</b>");
+		jspWriter.println("<b>"+this.getUserName()+"ä½ å¥½!</b>");
 	}
 
 	public String getUserName() {
