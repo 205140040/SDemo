@@ -92,9 +92,9 @@
 		</taglib> <jsp-property-group> 可用于所有该目录 <url-pattern>/WEB-INF/jsp/*</url-pattern> 
 		设置jsp 字符 <page-encoding>UTF-8</page-encoding> </jsp-property-group> </jsp-config> -->
 	<!-- 配置监听器 -->
-	<listener>
-		<listener-class>c001.Listener1</listener-class>
-	</listener>
+<!-- 	<listener> -->
+<!-- 		<listener-class>c001.Listener1</listener-class> -->
+<!-- 	</listener> -->
 	<!-- ipFilter -->
 	<filter>
 		<filter-name>ipFilter</filter-name>
@@ -109,15 +109,15 @@
 		<param-name>companyName</param-name>
 		<param-value>com.yosemite</param-value>
 	</context-param>
-	<listener>
-		<listener-class>c001.CompanyContextListener</listener-class>
-	</listener>
+<!-- 	<listener> -->
+<!-- 		<listener-class>c001.CompanyContextListener</listener-class> -->
+<!-- 	</listener> -->
 	<!-- sessionListener -->
-	<listener>
-		<listener-class>c001.SessionCounter</listener-class>
-	</listener>
+<!-- 	<listener> -->
+<!-- 		<listener-class>c001.SessionCounter</listener-class> -->
+<!-- 	</listener> -->
 	<!-- requestListener -->
-	<listener>
-		<listener-class>c001.MyRequestListener</listener-class>
-	</listener>
+<!-- 	<listener> -->
+<!-- 		<listener-class>c001.MyRequestListener</listener-class> -->
+<!-- 	</listener> -->
 </web-app>
