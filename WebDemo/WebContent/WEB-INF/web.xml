@@ -65,10 +65,10 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	<!-- 配置错误页面 -->
-	<error-page>
-		<error-code>404</error-code>
-		<location>/WEB-INF/jsp/404.jsp</location>
-	</error-page>
+<!-- 	<error-page> -->
+<!-- 		<error-code>404</error-code> -->
+<!-- 		<location>/WEB-INF/jsp/404.jsp</location> -->
+<!-- 	</error-page> -->
 	<error-page>
 		<exception-type>java.lang.NullPointerException</exception-type>
 		<location>/WEB-INF/jsp/null.jsp</location>
@@ -120,4 +120,12 @@
 	<!-- <listener> -->
 	<!-- <listener-class>c001.MyRequestListener</listener-class> -->
 	<!-- </listener> -->
+	<servlet>
+		<servlet-name>resDemo</servlet-name>
+		<servlet-class>servlet.ResponseDemo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>resDemo</servlet-name>
+		<url-pattern>/resDemo</url-pattern>
+	</servlet-mapping>
 </web-app>
