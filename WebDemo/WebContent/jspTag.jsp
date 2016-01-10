@@ -1,3 +1,4 @@
+<%@page import="com.alibaba.fastjson.JSON"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,13 +22,18 @@
 		nList.add("five");
 		nList.add("six");
 		request.setAttribute("nList", nList);
+		String cName=this.getClass().getClassLoader().getClass().getName();
 	%>
 	<h3 align="center">
 		c:out <font color="blue"> <c:out value="${uname }"
 				default="none"></c:out>
 		</font>
 	</h3>
-
+<h3 align="center">
+		类装载器名称 <font color="blue"> <c:out value="<%=cName %>"
+				default="none"></c:out>
+		</font>
+	</h3>
 	<h3 align="center">
 		foreach
 
