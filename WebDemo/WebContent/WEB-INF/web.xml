@@ -65,10 +65,10 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	<!-- 配置错误页面 -->
-<!-- 	<error-page> -->
-<!-- 		<error-code>404</error-code> -->
-<!-- 		<location>/WEB-INF/jsp/404.jsp</location> -->
-<!-- 	</error-page> -->
+	<!-- <error-page> -->
+	<!-- <error-code>404</error-code> -->
+	<!-- <location>/WEB-INF/jsp/404.jsp</location> -->
+	<!-- </error-page> -->
 	<error-page>
 		<exception-type>java.lang.NullPointerException</exception-type>
 		<location>/WEB-INF/jsp/null.jsp</location>
@@ -145,5 +145,15 @@
 	<servlet-mapping>
 		<servlet-name>ImgSevlet</servlet-name>
 		<url-pattern>/ImgSevlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- ReuestDispatcherDemo -->
+	<servlet>
+		<servlet-name>ReuestDispatcherDemo</servlet-name>
+		<servlet-class>servlet.ReuestDispatcherDemo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReuestDispatcherDemo</servlet-name>
+		<url-pattern>/ReuestDispatcherDemo</url-pattern>
 	</servlet-mapping>
 </web-app>
