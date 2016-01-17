@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,9 +57,17 @@ public class RequestDemo extends HttpServlet {
 		// 获取当前请求的主机名
 		out.println("当前请求的主机名:" + request.getServerName() + "<br>");
 		out.println("当前请求的主机端口号:" + request.getServerPort() + "<br>");
-		//请求的协议名，http，https,ftp
+		// 请求的协议名，http，https,ftp
 		out.println("请求的协议名，http，https,ftp----:" + request.getScheme() + "<br>");
+		// 获取请求头信息
+		out.println("header请求头方法:Accept-Language:" + request.getHeader("Accept-Language") + "<br>");
 
+		Enumeration<String> allHeaders = request.getHeaderNames();
+		while (allHeaders.hasMoreElements()) {
+			out.println(allHeaders.nextElement() + request.getHeader(allHeaders.nextElement()) + "<br>");
+		}
+		out.println("contentType" + request.getContentType() + "<br>");
+		out.println("请求页面referer:" + request.getHeader("referer") + "<br>");
 		// 关闭输出流
 		out.close();
 	}

@@ -156,7 +156,7 @@
 		<servlet-name>ReuestDispatcherDemo</servlet-name>
 		<url-pattern>/ReuestDispatcherDemo</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>RequestDemo</servlet-name>
 		<servlet-class>servlet.RequestDemo</servlet-class>
@@ -164,5 +164,14 @@
 	<servlet-mapping>
 		<servlet-name>RequestDemo</servlet-name>
 		<url-pattern>/RequestDemo</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GetParameter</servlet-name>
+		<servlet-class>servlet.GetParameter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetParameter</servlet-name>
+		<url-pattern>/GetParameter</url-pattern>
 	</servlet-mapping>
 </web-app>
