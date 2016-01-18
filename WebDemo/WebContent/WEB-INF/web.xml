@@ -174,4 +174,13 @@
 		<servlet-name>GetParameter</servlet-name>
 		<url-pattern>/GetParameter</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CookieServlet</servlet-name>
+		<servlet-class>servlet.CookieServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CookieServlet</servlet-name>
+		<url-pattern>/CookieServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
