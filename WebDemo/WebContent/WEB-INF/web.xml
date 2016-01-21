@@ -174,7 +174,7 @@
 		<servlet-name>GetParameter</servlet-name>
 		<url-pattern>/GetParameter</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>CookieServlet</servlet-name>
 		<servlet-class>servlet.CookieServlet</servlet-class>
@@ -182,5 +182,23 @@
 	<servlet-mapping>
 		<servlet-name>CookieServlet</servlet-name>
 		<url-pattern>/CookieServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CookieServlet2</servlet-name>
+		<servlet-class>servlet.CookieServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CookieServlet2</servlet-name>
+		<url-pattern>/CookieServlet2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginSessionServlet</servlet-name>
+		<servlet-class>servlet.LoginSessionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginSessionServlet</servlet-name>
+		<url-pattern>/LoginSessionServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
