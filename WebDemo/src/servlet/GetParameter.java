@@ -40,6 +40,7 @@ public class GetParameter extends HttpServlet {
 		// 获取所有请求的参数名
 		Enumeration<String> pnames = request.getParameterNames();
 		out.println("获取所有请求的参数名" + "<br>");
+		out.println(name);
 
 		while (pnames.hasMoreElements()) {
 			out.println(pnames.nextElement() + "<br>");

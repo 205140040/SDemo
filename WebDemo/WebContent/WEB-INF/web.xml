@@ -4,28 +4,28 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<!-- 定义servlet -->
-	<servlet>
-		<description>servlet1</description>
-		<servlet-name>servlet1</servlet-name>
-		<servlet-class>c001.Servlet1</servlet-class>
-	</servlet>
+	<!-- <servlet> -->
+	<!-- <description>servlet1</description> -->
+	<!-- <servlet-name>servlet1</servlet-name> -->
+	<!-- <servlet-class>c001.Servlet1</servlet-class> -->
+	<!-- </servlet> -->
 	<!-- 定义servlet url -->
-	<servlet-mapping>
-		<servlet-name>servlet1</servlet-name>
-		<url-pattern>/servlet1</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>servlet1</servlet-name> -->
+	<!-- <url-pattern>/servlet1</url-pattern> -->
+	<!-- </servlet-mapping> -->
 	<!-- 为jsp命名 -->
-	<servlet>
-		<servlet-name>jsp1</servlet-name>
-		<jsp-file>/WEB-INF/jsp/jsp1.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>jsp1</servlet-name>
-		<url-pattern>/jsp1</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>jsp1</servlet-name> -->
+	<!-- <jsp-file>/WEB-INF/jsp/jsp1.jsp</jsp-file> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>jsp1</servlet-name> -->
+	<!-- <url-pattern>/jsp1</url-pattern> -->
+	<!-- </servlet-mapping> -->
 
 	<!-- 配置初始化参数 -->
-	<servlet>
+<!-- 	<servlet>
 		<servlet-name>initServlet</servlet-name>
 		<servlet-class>c001.InitServlet</servlet-class>
 		<init-param>
@@ -36,13 +36,13 @@
 			<param-name>pwd</param-name>
 			<param-value>666</param-value>
 		</init-param>
-		<!--启动时首先加载 -->
+		启动时首先加载
 		<load-on-startup>0</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>initServlet</servlet-name>
-		<url-pattern>/initServlet</url-pattern>
-	</servlet-mapping>
+	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>initServlet</servlet-name> -->
+<!-- 		<url-pattern>/initServlet</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	<!-- 应用程序上下文参数 -->
 	<context-param>
 		<description>应用程序上下文参数</description>
@@ -50,15 +50,15 @@
 		<param-value>jiangzi</param-value>
 	</context-param>
 	<!-- 配置过滤器 -->
-	<filter>
-		<filter-name>filter1</filter-name>
-		<filter-class>c001.Filter1</filter-class>
-	</filter>
+	<!-- <filter> -->
+	<!-- <filter-name>filter1</filter-name> -->
+	<!-- <filter-class>c001.Filter1</filter-class> -->
+	<!-- </filter> -->
 	<!--为servlet制定filter -->
-	<filter-mapping>
-		<filter-name>filter1</filter-name>
-		<servlet-name>initServlet</servlet-name>
-	</filter-mapping>
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>filter1</filter-name> -->
+	<!-- <servlet-name>initServlet</servlet-name> -->
+	<!-- </filter-mapping> -->
 	<!-- 配置欢迎页面 -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
@@ -69,10 +69,10 @@
 	<!-- <error-code>404</error-code> -->
 	<!-- <location>/WEB-INF/jsp/404.jsp</location> -->
 	<!-- </error-page> -->
-	<error-page>
-		<exception-type>java.lang.NullPointerException</exception-type>
-		<location>/WEB-INF/jsp/null.jsp</location>
-	</error-page>
+	<!-- <error-page> -->
+	<!-- <exception-type>java.lang.NullPointerException</exception-type> -->
+	<!-- <location>/WEB-INF/jsp/null.jsp</location> -->
+	<!-- </error-page> -->
 	<!-- 登录验证 -->
 	<!-- <login-config> 认证方式为form <auth-method>FORM</auth-method> <form-login-config> 
 		<form-login-page>/WEB-INF/jsp/login.jsp</form-login-page> <form-error-page>/WEB-INF/jsp/login_error.jsp</form-error-page> 
@@ -96,14 +96,14 @@
 	<!-- <listener-class>c001.Listener1</listener-class> -->
 	<!-- </listener> -->
 	<!-- ipFilter -->
-	<filter>
-		<filter-name>ipFilter</filter-name>
-		<filter-class>c001.IpFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>ipFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	<!-- <filter> -->
+	<!-- <filter-name>ipFilter</filter-name> -->
+	<!-- <filter-class>c001.IpFilter</filter-class> -->
+	<!-- </filter> -->
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>ipFilter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
 	<!--配置公司名称监听器 -->
 	<context-param>
 		<param-name>companyName</param-name>
@@ -120,51 +120,51 @@
 	<!-- <listener> -->
 	<!-- <listener-class>c001.MyRequestListener</listener-class> -->
 	<!-- </listener> -->
-	<servlet>
-		<servlet-name>resDemo</servlet-name>
-		<servlet-class>servlet.ResponseDemo</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>resDemo</servlet-name>
-		<url-pattern>/resDemo</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>resDemo</servlet-name> -->
+	<!-- <servlet-class>servlet.ResponseDemo</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>resDemo</servlet-name> -->
+	<!-- <url-pattern>/resDemo</url-pattern> -->
+	<!-- </servlet-mapping> -->
 	<!-- fileDownload -->
-	<servlet>
-		<servlet-name>FileDownload</servlet-name>
-		<servlet-class>servlet.FileDownload</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>FileDownload</servlet-name>
-		<url-pattern>/FileDownload</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>FileDownload</servlet-name> -->
+	<!-- <servlet-class>servlet.FileDownload</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>FileDownload</servlet-name> -->
+	<!-- <url-pattern>/FileDownload</url-pattern> -->
+	<!-- </servlet-mapping> -->
 	<!-- ImgSevlet -->
-	<servlet>
-		<servlet-name>ImgSevlet</servlet-name>
-		<servlet-class>servlet.ImgSevlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ImgSevlet</servlet-name>
-		<url-pattern>/ImgSevlet</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>ImgSevlet</servlet-name> -->
+	<!-- <servlet-class>servlet.ImgSevlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>ImgSevlet</servlet-name> -->
+	<!-- <url-pattern>/ImgSevlet</url-pattern> -->
+	<!-- </servlet-mapping> -->
 
 	<!-- ReuestDispatcherDemo -->
-	<servlet>
-		<servlet-name>ReuestDispatcherDemo</servlet-name>
-		<servlet-class>servlet.ReuestDispatcherDemo</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ReuestDispatcherDemo</servlet-name>
-		<url-pattern>/ReuestDispatcherDemo</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>ReuestDispatcherDemo</servlet-name> -->
+	<!-- <servlet-class>servlet.ReuestDispatcherDemo</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>ReuestDispatcherDemo</servlet-name> -->
+	<!-- <url-pattern>/ReuestDispatcherDemo</url-pattern> -->
+	<!-- </servlet-mapping> -->
 
-	<servlet>
-		<servlet-name>RequestDemo</servlet-name>
-		<servlet-class>servlet.RequestDemo</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RequestDemo</servlet-name>
-		<url-pattern>/RequestDemo</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>RequestDemo</servlet-name> -->
+	<!-- <servlet-class>servlet.RequestDemo</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>RequestDemo</servlet-name> -->
+	<!-- <url-pattern>/RequestDemo</url-pattern> -->
+	<!-- </servlet-mapping> -->
 
 	<servlet>
 		<servlet-name>GetParameter</servlet-name>
@@ -192,7 +192,7 @@
 		<servlet-name>CookieServlet2</servlet-name>
 		<url-pattern>/CookieServlet2</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>LoginSessionServlet</servlet-name>
 		<servlet-class>servlet.LoginSessionServlet</servlet-class>
