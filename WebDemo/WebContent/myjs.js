@@ -71,26 +71,107 @@ function Person(name, sex, age) {
 	this.name = name;
 	this.sex = sex;
 	this.age = age;
-	this.showInfo = showInfo;//对象方法
+	this.showInfo = showInfo;// 对象方法
 	return this;
 }
 
 function showInfo() {
 	console.log(this);
 	alert(JSON.stringify(this));
-//	alert("对象姓名:" + this.name);
-//	alert("对象性别:" + this.sex);
-//	alert("对象年龄:" + this.age);
+	// alert("对象姓名:" + this.name);
+	// alert("对象性别:" + this.sex);
+	// alert("对象年龄:" + this.age);
 }
 
 var p1 = new Person("张三三", "女", 18);
-//p1.showInfo();
+// p1.showInfo();
 var p2 = new Person("李思思", "女", 18);
-//p2.showInfo();
-//getElementById();
-alert(typeof document.getElementById("p1"));
-//getAttribute();
-var p1=document.getElementById("p1");
-alert(p1.getAttribute("title"));
-//setAttribute
-p1.setAttribute("title","setAttribute");
+// p2.showInfo();
+// getElementById();
+// alert(typeof document.getElementById("p1"));
+// getAttribute();
+var p1 = document.getElementById("p1");
+// alert(p1.getAttribute("title"));
+// setAttribute
+p1.setAttribute("title", "setAttribute");
+
+// typeof检测数据类型,boolean,string,number,null,undefined,funciton,对象
+var s1 = "我是小明";
+var n1 = 3.1415;
+var f1 = true;
+
+// alert("s1的类型:" + typeof s1);
+// alert("n1的类型:" + typeof n1);
+// alert("f1的类型:" + typeof f1);
+// alert("Person的类型:" + typeof p1);
+// alert("showInfo的类型:" + typeof showInfo);
+// 未定义或未经初始化的值是undefined
+// alert("b的类型:" + typeof b);
+// null声明一个变量可以设置为null
+var nu1 = null;
+// alert(nu1);
+// 数值转换函数
+// alert("Number()"+Number("11.2396"));
+// alert("parseInt()"+parseInt("11.2396aaa"));
+// alert("parseFloat()"+parseFloat("11.2396bb"));
+// string类型，string不可变，每次都是销毁之前的，新建一个string
+// toString()方法
+var ns1 = 1.269;
+var fs1 = true;
+var ss1 = "哈哈哈";
+// alert(typeof ns1.toString());
+// alert(fs1.toString());
+// alert(ss1.toString());
+// String()方法
+// alert(typeof String(ns1));
+// alert(String(fs1));
+// alert(String(ss1));
+
+// 语句for in
+for ( var propName in window) {
+	// alert(propName);
+}
+// break，continue
+for (var i = 0; i < 10; i++) {
+	if (i == 5) {
+		break;
+	}
+	// alert(i);
+}
+for (var i = 0; i < 10; i++) {
+	if (i == 5) {
+		continue;
+	}
+	// alert(i);
+}
+// switch
+var sname = "张三";
+switch (sname) {
+case "张三":
+//	alert("张三")
+	break;
+case "李四":
+//	alert("李四")
+	break;
+default:
+//	alert("王五");
+}
+//函数，参数是一个数组，无论传递多少都不会影响
+//可以用arguments调用参数
+function myFun1(name,sex,age){
+//	alert("参数个数:"+arguments.length);
+	for(var i=0;i<arguments.length;i++){
+//		alert(arguments[i]);
+	}
+}
+myFun1('张三',"男");
+//闭包
+function bbFun(name,sex){
+	var age=10;
+	sayHello=function(){
+		alert(name+"hello");
+	}
+}
+var bbF1=new bbFun();
+alert(bbF1.sayHello()());
+
