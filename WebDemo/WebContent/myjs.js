@@ -71,19 +71,26 @@ function Person(name, sex, age) {
 	this.name = name;
 	this.sex = sex;
 	this.age = age;
-	this.showInfo = showInfo;
+	this.showInfo = showInfo;//对象方法
 	return this;
 }
 
 function showInfo() {
 	console.log(this);
 	alert(JSON.stringify(this));
-	alert("对象姓名:" + this.name);
-	alert("对象性别:" + this.sex);
-	alert("对象年龄:" + this.age);
+//	alert("对象姓名:" + this.name);
+//	alert("对象性别:" + this.sex);
+//	alert("对象年龄:" + this.age);
 }
 
 var p1 = new Person("张三三", "女", 18);
-p1.showInfo();
+//p1.showInfo();
 var p2 = new Person("李思思", "女", 18);
-p2.showInfo();
+//p2.showInfo();
+//getElementById();
+alert(typeof document.getElementById("p1"));
+//getAttribute();
+var p1=document.getElementById("p1");
+alert(p1.getAttribute("title"));
+//setAttribute
+p1.setAttribute("title","setAttribute");
