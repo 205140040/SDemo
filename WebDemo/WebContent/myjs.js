@@ -148,57 +148,156 @@ for (var i = 0; i < 10; i++) {
 var sname = "张三";
 switch (sname) {
 case "张三":
-//	alert("张三")
+// alert("张三")
 	break;
 case "李四":
-//	alert("李四")
+// alert("李四")
 	break;
 default:
-//	alert("王五");
+// alert("王五");
 }
-//函数，参数是一个数组，无论传递多少都不会影响
-//可以用arguments调用参数
+// 函数，参数是一个数组，无论传递多少都不会影响
+// 可以用arguments调用参数
 function myFun1(name,sex,age){
-//	alert("参数个数:"+arguments.length);
+// alert("参数个数:"+arguments.length);
 	for(var i=0;i<arguments.length;i++){
-//		alert(arguments[i]);
+// alert(arguments[i]);
 	}
 }
 myFun1('张三',"男");
-/*//闭包
-function bbFun(name,sex){
-	var age=10;
-	sayHello=function(){
-		alert(name+"hello");
-	}
-}
-var bbF1=new bbFun();
-alert(bbF1.sayHello()());*/
+/*
+ * //闭包 function bbFun(name,sex){ var age=10; sayHello=function(){
+ * alert(name+"hello"); } } var bbF1=new bbFun(); alert(bbF1.sayHello()());
+ */
 
-//instanceof校验是否是某个对象
-//alert("instanceof:"+(Person instanceof Object));
+// instanceof校验是否是某个对象
+// alert("instanceof:"+(Person instanceof Object));
 var array1=new Array();
 array1[0]="张三三";
 array1[1]="酱紫";
 array1[2]="王五";
 
-//校验是否为数组
-//alert("isArray:"+(array1 instanceof Array));
-//数组tostring(),join()方法
-//alert(array1.toString());
-//join（）
-alert(array1.join("&"));
-//数组的栈方法
+// 校验是否为数组
+// alert("isArray:"+(array1 instanceof Array));
+// 数组tostring(),join()方法
+// alert(array1.toString());
+// join（）
+// alert(array1.join("&"));
+// 数组的栈方法
 var stackArr=new Array();
-stackArr[0]="哈哈哈";
-//push()方法，添加多个对象到数组中，并返回添加后的数组长度
-var alength=stackArr.push("啦啦啦","买买买");
+stackArr[0]="one";
+// push()方法，添加多个对象到数组中，并返回添加后的数组长度
+var alength=stackArr.push("two","three");
 for(var i=0;i<stackArr.length;i++){
-	alert(stackArr[i]);
+// alert(stackArr[i]);
 }
-//pop方法，移除数组中最后一个，并返回移除的对象
-alert("移除的对象："+stackArr.pop());
-alert("移除后:");
+// pop方法，移除数组中最后一个，并返回移除的对象
+// alert("移除的对象："+stackArr.pop());
+// alert("移除后:");
 for(var i=0;i<stackArr.length;i++){
-	alert(stackArr[i]);
+// alert(stackArr[i]);
 }
+// shift()从数组0开始移除,先进先出
+// alert("移除的对象："+stackArr.shift());
+// alert("移除后:");
+for(var i=0;i<stackArr.length;i++){
+// alert(stackArr[i]);
+}
+// reverse和sort排序
+var ns=new Array();
+ns.push(1,2,3,6,4,10);
+ns.reverse();
+// alert("通过reverse反转后："+ns.toString());
+function compare(val1,val2){
+	if(val1>val2){
+		return 1;
+	}else if(val1<val2){
+		return -1;
+	}else{
+		return 0;
+	}
+}
+ns.sort(compare);
+// alert("通过sort排序后："+ns.toString());
+// splice方法，对数组进行删除，插入，替换
+// 删除
+ns.splice(1,1);
+// alert("使用splice删除后："+ns.toString());
+// 添加
+ns.splice(2,0,888,666);
+// alert("使用splice添加后："+ns.toString());
+// 替换
+ns.splice(2,1,999);
+// alert("使用splice替换后："+ns.toString());
+// 位置方法，indexof，lastindexof
+//alert("ns中10的位置:"+ns.indexOf(10)+"  ns的length:"+ns.length);
+// filter方法
+var filterRes=ns.filter(function(item,index,array){
+	return (item>6);
+});
+//alert(filterRes);
+//alert("forEach方法：");
+//forEach方法
+ns.forEach(function(item,index,array){
+//	alert("下标"+index+":"+item);
+});
+
+//Date类型
+//新建一个日期
+var date1=new Date();
+//alert("date1："+date1);
+var startDate=Date.now();
+//alert("函数运行开始时间："+startDate);
+var nrry=new Array();
+nrry.push(1,2,3,4,5,6,7,8,9,10);
+nrry.forEach(function(item,index,array){
+//	alert("nrry["+index+"]:"+item);
+});
+var endDate=Date.now();
+//alert("函数运行结束时间时间："+endDate);
+//getTime返回long类型的时间
+//alert(date1.getTime());
+//获取年月日，时分秒
+var date2=new Date();
+date2.setFullYear(2016);
+date2.setMonth(9);
+date2.setDate(15);
+date2.setHours(10);
+date2.setMinutes(10);
+date2.setSeconds(10);
+var year=date2.getFullYear();
+var month=date2.getMonth();
+var day=date2.getDate();
+var hour=date2.getHours();
+var minutes=date2.getMinutes();
+var seconds=date2.getSeconds();
+var dstr=year+"-"+month+"-"+day+" "+hour+":"+minutes+":"+seconds;
+alert(dstr);
+
+//正则表达式类型
+
+
+//函数
+function call1(name,callback1,cb2){
+	alert("name:"+name);
+	if(typeof callback1=="function"){
+		//运行回调函数
+		callback1();
+	}
+	if(typeof cb2=="function"){
+		cb2();
+	}
+}
+
+function callback1(){
+	alert("回调函数1");
+}
+
+//var callback1=1;
+
+call1("张三",callback1);
+//函数中的arguments和length
+alert("call1函数参数的个数:"+call1.length);
+alert("callback1函数参数的个数:"+callback1.length);
+
+//5.6基本包装类型
