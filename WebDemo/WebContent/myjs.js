@@ -165,7 +165,7 @@ function myFun1(name,sex,age){
 	}
 }
 myFun1('张三',"男");
-//闭包
+/*//闭包
 function bbFun(name,sex){
 	var age=10;
 	sayHello=function(){
@@ -173,5 +173,32 @@ function bbFun(name,sex){
 	}
 }
 var bbF1=new bbFun();
-alert(bbF1.sayHello()());
+alert(bbF1.sayHello()());*/
 
+//instanceof校验是否是某个对象
+//alert("instanceof:"+(Person instanceof Object));
+var array1=new Array();
+array1[0]="张三三";
+array1[1]="酱紫";
+array1[2]="王五";
+
+//校验是否为数组
+//alert("isArray:"+(array1 instanceof Array));
+//数组tostring(),join()方法
+//alert(array1.toString());
+//join（）
+alert(array1.join("&"));
+//数组的栈方法
+var stackArr=new Array();
+stackArr[0]="哈哈哈";
+//push()方法，添加多个对象到数组中，并返回添加后的数组长度
+var alength=stackArr.push("啦啦啦","买买买");
+for(var i=0;i<stackArr.length;i++){
+	alert(stackArr[i]);
+}
+//pop方法，移除数组中最后一个，并返回移除的对象
+alert("移除的对象："+stackArr.pop());
+alert("移除后:");
+for(var i=0;i<stackArr.length;i++){
+	alert(stackArr[i]);
+}
