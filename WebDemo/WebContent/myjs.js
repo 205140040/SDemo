@@ -338,7 +338,7 @@ var min = Math.min(5, 1, 6, 99, 158, 33);
 // 四舍五入
 // alert("round(3位小数):"+Math.round(3.131415926,3));
 // 随机数
-alert("随机数:" + Math.random());
+// alert("随机数:" + Math.random());
 
 /**
  * 6.面向对象
@@ -351,7 +351,7 @@ person1.age = 18;
 person1.sayInfo = function() {
 	alert("姓名:" + this.name + "  性别:" + this.sex + "  年龄：" + this.age);
 }
-person1.sayInfo();
+// person1.sayInfo();
 // 对象字面量语法创建对象
 var perobj = {
 	name : "啦啦啦",
@@ -361,4 +361,93 @@ var perobj = {
 		alert("姓名:" + this.name + "  性别:" + this.sex + "  年龄：" + this.age);
 	}
 }
-perobj.sayInfo();
+// perobj.sayInfo();
+
+// 工厂模式，创建对象
+function Stu(name, sex, age) {
+	this.name = name;
+	this.sex = sex;
+	this.age = age;
+	this.showInfo = function() {
+		alert("name:" + this.name + " sex:" + this.sex + " age:" + this.age);
+	}
+}
+var stu1 = new Stu("露露啊", "nn", 18);
+// stu1.showInfo();
+
+// 原型对象prototype:原型可以供多个实例共享
+function StuPro() {
+	this.showInfo = function() {
+		alert("name:" + this.name + " sex:" + this.sex + " age:" + this.age
+				+ " phone:" + this.phone + " email:" + this.email);
+	}
+}
+var stp = new StuPro();
+StuPro.prototype.name = "protypeName";
+StuPro.prototype.sex = "美女";
+StuPro.prototype.age = "18";
+// stp.showInfo();
+// 搜索对象的值，先从对象中搜索，没有则从 ：原型中搜索，对象中的属性和原型中的一样，则为对象中的属性为值
+// alert("prototype:"+Stu.isPrototypeOf(stp.name));
+// alert("prototype:"+Object.getPrototypeOf(stp));
+// 判断属性是原型属性，还是本身的属性
+// alert("hasOwnProperty:"+stp.hasOwnProperty("name"));
+// in 判断对象是否含有该属性
+//alert("有属性:in:" + ("name" in stp));
+
+var nArr = new Array();
+nArr.push("name", "sex", "age");
+// for in 显示对象中的可枚举的属性
+for (prop in stp) {
+	// alert("for in:" + prop);
+}
+// 通过object.keys获取对象中的属性(不包含原型属性)
+alert(Object.keys(stp));
+// 通过object.getOwnPropertyNames获取对象中的属性(包含原型属性)
+// alert("getPropertyNames:"+Object.getPropertyNames(stp));
+
+// 原型字面量
+StuPro.prototype = {
+	phone : "666688",
+	email : "555@qq.com"
+};
+var stp2 = new StuPro();
+// stp2.showInfo();
+
+// 组合使用构造函数模式和原型模式
+function ConsAndPro(name, sex, age) {
+	this.name = name;
+	this.sex = sex;
+	this.age = age;
+	this.showInfo = function() {
+		alert(this.name + "-" + this.sex + "-" + this.age + "-国家："
+				+ this.country + "-民族" + this.nation);
+	}
+	return this;
+}
+
+ConsAndPro.prototype = {
+	country : "中国",
+	nation : "汉族"
+};
+var cap1 = new ConsAndPro("露露", "哈哈", 19);
+//cap1.showInfo();
+
+// 通过原型链实现继承
+function SuperType(name, sex, age) {
+	this.name = "哇哈哈哈";
+	this.sex = sex;
+	this.age = age;
+	this.showInfo = function() {
+		alert(this.name + ":" + this.sex + ":" + this.age + "c:" + this.bir
+				+ "c:" + this.ah);
+	}
+}
+
+function SubType(bir,ah){
+	//继承了父对象
+	SuperType.call(this);
+}
+
+var sub1=new SubType("父名称","富性别","父年龄","子生日","子爱好");
+sub1.showInfo();
