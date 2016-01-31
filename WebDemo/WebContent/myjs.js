@@ -535,7 +535,7 @@ clearTimeout(timeId);
 //检测插件
 for(var i=0;i<navigator.plugins.length;i++){
 	var item=navigator.plugins[i];
-	alert(item.name);
+//	alert(item.name);
 }
 //history
 //后退两页
@@ -549,3 +549,7 @@ for(var i=0;i<navigator.plugins.length;i++){
 //window.history.back();
 //前进一页
 window.history.forward();
+
+//通过dataset获取自定义属性
+var dp=document.getElementById("p1");
+alert("自定义属性名称："+dp.dataset.name);
