@@ -164,7 +164,7 @@ function myFun1(name, sex, age) {
 		// alert(arguments[i]);
 	}
 }
-myFun1('张三', "男");
+// myFun1('张三', "男");
 /*
  * //闭包 function bbFun(name,sex){ var age=10; sayHello=function(){
  * alert(name+"hello"); } } var bbF1=new bbFun(); alert(bbF1.sayHello()());
@@ -393,7 +393,7 @@ StuPro.prototype.age = "18";
 // 判断属性是原型属性，还是本身的属性
 // alert("hasOwnProperty:"+stp.hasOwnProperty("name"));
 // in 判断对象是否含有该属性
-//alert("有属性:in:" + ("name" in stp));
+// alert("有属性:in:" + ("name" in stp));
 
 var nArr = new Array();
 nArr.push("name", "sex", "age");
@@ -402,7 +402,7 @@ for (prop in stp) {
 	// alert("for in:" + prop);
 }
 // 通过object.keys获取对象中的属性(不包含原型属性)
-alert(Object.keys(stp));
+// alert(Object.keys(stp));
 // 通过object.getOwnPropertyNames获取对象中的属性(包含原型属性)
 // alert("getPropertyNames:"+Object.getPropertyNames(stp));
 
@@ -431,23 +431,121 @@ ConsAndPro.prototype = {
 	nation : "汉族"
 };
 var cap1 = new ConsAndPro("露露", "哈哈", 19);
-//cap1.showInfo();
+// cap1.showInfo();
 
 // 通过原型链实现继承
 function SuperType(name, sex, age) {
 	this.name = "哇哈哈哈";
-	this.sex = sex;
-	this.age = age;
+	// this.sex = sex;
+	// this.age = age;
 	this.showInfo = function() {
 		alert(this.name + ":" + this.sex + ":" + this.age + "c:" + this.bir
 				+ "c:" + this.ah);
 	}
 }
 
-function SubType(bir,ah){
-	//继承了父对象
-	SuperType.call(this);
+function SubType(name, sex, age, bir, ah) {
+	// this.prototype = new SuperType(name, sex, age);
+	// 继承了父对象
+	// SuperType.call(this);
+}
+SubType.prototype = new SuperType();
+
+var sub1 = new SubType("父名称", "富性别", "父年龄", "子生日", "子爱好");
+// sub1.showInfo();
+/**
+ * 借用构造函数进行继承
+ */
+function SuperPerson(name, sex, age) {
+	this.name = name;
+	this.sex = sex;
+	this.age = age;
+	this.showInfo = function() {
+		alert(this.name + ":" + this.sex + ":" + this.age + "学号:" + this.sno
+				+ "班级:" + this.scla);
+	}
+	return this;
 }
 
-var sub1=new SubType("父名称","富性别","父年龄","子生日","子爱好");
-sub1.showInfo();
+/**
+ * 子类
+ */
+function SubStudent(name, sex, age, sno, scla) {
+	SuperPerson.call(this, name, sex, age, sno, scla);
+	this.sno = sno;
+	this.scla = scla;
+}
+var substu1 = new SubStudent("酱紫", "呢你呢", 18, "no123", "1班");
+// substu1.showInfo();
+
+/**
+ * 闭包
+ */
+function bb(name, sex, age) {
+	var age1 = age + 1;
+	var ra = function() {
+		return age1;
+	}
+	return ra();
+}
+
+// alert(bb('a','b',17));
+
+/**
+ * window
+ */
+// window.open
+// window.open("","aa","height=50","width:200");
+// 定时函数，取消定时
+var timeId = window.setTimeout(function() {
+	alert("定时函数执行");
+}, 1000);
+
+// alert(timeId);
+clearTimeout(timeId);
+
+/**
+ * 系统对话框
+ */
+// alert警告框
+//alert("这是一个警告框");
+
+// confirm 确认框
+//if (confirm("确认吗?")) {
+//	alert("选择了确认");
+//} else {
+//	alert("取消了");
+//}
+//prompt
+//var res=prompt("请输入姓名：","张三");
+//alert("你输入了："+res);
+
+/**
+ * location对象
+ */
+//location.href重定向
+//window.location.href="/bbb.jsp";
+//replace跳转，禁用页面后退的功能
+//window.location.replace("/bbb.jsp");
+//reload 重新加载
+//window.location.reload(true);
+/**
+ * navigator对象
+ */
+//检测插件
+for(var i=0;i<navigator.plugins.length;i++){
+	var item=navigator.plugins[i];
+	alert(item.name);
+}
+//history
+//后退两页
+//alert("后退两页")
+//window.history.go(-2);
+//前进3页
+//alert("前进两页")
+
+//window.history.go(2);
+//后退一页
+//window.history.back();
+//前进一页
+window.history.forward();
