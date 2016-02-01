@@ -508,48 +508,98 @@ clearTimeout(timeId);
  * 系统对话框
  */
 // alert警告框
-//alert("这是一个警告框");
-
+// alert("这是一个警告框");
 // confirm 确认框
-//if (confirm("确认吗?")) {
-//	alert("选择了确认");
-//} else {
-//	alert("取消了");
-//}
-//prompt
-//var res=prompt("请输入姓名：","张三");
-//alert("你输入了："+res);
-
+// if (confirm("确认吗?")) {
+// alert("选择了确认");
+// } else {
+// alert("取消了");
+// }
+// prompt
+// var res=prompt("请输入姓名：","张三");
+// alert("你输入了："+res);
 /**
  * location对象
  */
-//location.href重定向
-//window.location.href="/bbb.jsp";
-//replace跳转，禁用页面后退的功能
-//window.location.replace("/bbb.jsp");
-//reload 重新加载
-//window.location.reload(true);
+// location.href重定向
+// window.location.href="/bbb.jsp";
+// replace跳转，禁用页面后退的功能
+// window.location.replace("/bbb.jsp");
+// reload 重新加载
+// window.location.reload(true);
 /**
  * navigator对象
  */
-//检测插件
-for(var i=0;i<navigator.plugins.length;i++){
-	var item=navigator.plugins[i];
-//	alert(item.name);
+// 检测插件
+for (var i = 0; i < navigator.plugins.length; i++) {
+	var item = navigator.plugins[i];
+	// alert(item.name);
 }
-//history
-//后退两页
-//alert("后退两页")
-//window.history.go(-2);
-//前进3页
-//alert("前进两页")
+// history
+// 后退两页
+// alert("后退两页")
+// window.history.go(-2);
+// 前进3页
+// alert("前进两页")
 
-//window.history.go(2);
-//后退一页
-//window.history.back();
-//前进一页
-window.history.forward();
+// window.history.go(2);
+// 后退一页
+// window.history.back();
+// 前进一页
+// window.history.forward();
 
-//通过dataset获取自定义属性
-var dp=document.getElementById("p1");
-alert("自定义属性名称："+dp.dataset.name);
+// 通过dataset获取自定义属性
+var dp = document.getElementById("p1");
+// alert("自定义属性名称："+dp.dataset.name);
+
+/**
+ * 事件
+ */
+// 添加事件，移除事件
+// addEventListener,removeEventListener
+// 事件名称，事件函数，在捕获阶段执行：true，冒泡阶段执行：false
+var btn1 = document.getElementById("btn1");
+btn1.addEventListener("click", function() {
+	alert(this.value);
+}, false);
+
+function bc2() {
+	alert("添加的第二个事件:" + this.value);
+
+}
+
+// 添加多个事件
+btn1.addEventListener("click", bc2, false);
+// 移除事件,匿名函数无法移除
+setTimeout(rEvent, 2000);
+function rEvent() {
+	btn1.removeEventListener("click", bc2, false);
+}
+
+// 事件对象
+function bc3(event) {
+	alert(JSON.stringify(event));
+	console.log(event);
+	// 事件的目标
+	alert("事件的目标:" + event.target)
+	alert("事件的类型:" + event.type);
+}
+btn1.addEventListener("click", bc3, false);
+
+// 阻止事件的默认行为
+var href1 = document.getElementById("href1");
+href1.addEventListener("click", function() {
+	// 阻止连接默认的跳转
+	event.preventDefault();
+}, false);
+
+document.getElementById("form1").onclick = function() {
+	alert("form click");
+}
+
+//取消冒泡
+document.getElementById("fdiv1").onclick = function() {
+	alert("fdiv1 click");
+	event.stopPropagation();
+}
+
