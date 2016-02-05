@@ -602,4 +602,51 @@ document.getElementById("fdiv1").onclick = function() {
 	alert("fdiv1 click");
 	event.stopPropagation();
 }
+//事件类型
 
+//ui事件
+//load事件
+document.getElementById("bd1").onload=function(){
+//	alert("body on load");
+//	alert(event.type);
+}
+
+document.getElementById("img1").onload=function(){
+	alert("image on load");
+//	alert(event.type);
+}
+
+//unload
+document.getElementById("bd1").onunload=function(){
+	alert("body unun load");
+//	alert(event.type);
+}
+
+//resize
+document.getElementById("bd1").onresize=function(){
+	alert("body resize");
+	alert(event.type);
+}
+
+//焦点事件
+//blur,focus
+
+//鼠标与滚轮事件
+//document.getElementById("bd1").onmousewheel=function(){
+//	alert("body onmousewheel");
+//	alert(event.type);
+//}
+
+//键盘与文本事件
+document.getElementById("ki1").onkeydown=function(){
+	alert(" keydown");
+	alert("类型"+event.type);
+	alert("键码："+event.keyCode);
+}
+
+//beforeunload
+document.getElementById("bd1").onbeforeunload=function(){
+	var res="leave?";
+	event.returnValue=res;
+	return res;
+}
