@@ -594,13 +594,13 @@ href1.addEventListener("click", function() {
 }, false);
 
 document.getElementById("form1").onclick = function() {
-	alert("form click");
+//	alert("form click");
 }
 
 //取消冒泡
 document.getElementById("fdiv1").onclick = function() {
-	alert("fdiv1 click");
-	event.stopPropagation();
+//	alert("fdiv1 click");
+//	event.stopPropagation();
 }
 //事件类型
 
@@ -612,21 +612,21 @@ document.getElementById("bd1").onload=function(){
 }
 
 document.getElementById("img1").onload=function(){
-	alert("image on load");
+//	alert("image on load");
 //	alert(event.type);
 }
 
 //unload
 document.getElementById("bd1").onunload=function(){
-	alert("body unun load");
+//	alert("body unun load");
 //	alert(event.type);
 }
 
 //resize
-document.getElementById("bd1").onresize=function(){
-	alert("body resize");
-	alert(event.type);
-}
+//document.getElementById("bd1").onresize=function(){
+//	alert("body resize");
+//	alert(event.type);
+//}
 
 //焦点事件
 //blur,focus
@@ -638,15 +638,22 @@ document.getElementById("bd1").onresize=function(){
 //}
 
 //键盘与文本事件
-document.getElementById("ki1").onkeydown=function(){
-	alert(" keydown");
-	alert("类型"+event.type);
-	alert("键码："+event.keyCode);
-}
+//document.getElementById("ki1").onkeydown=function(){
+//	alert(" keydown");
+//	alert("类型"+event.type);
+//	alert("键码："+event.keyCode);
+//}
 
 //beforeunload
 document.getElementById("bd1").onbeforeunload=function(){
 	var res="leave?";
 	event.returnValue=res;
 	return res;
+}
+
+//15章使用canvas绘图
+function drawImg(){
+	var dra=document.getElementById("can1");
+	var context=dr1.getContext("2d");
+	
 }
