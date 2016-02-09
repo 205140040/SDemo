@@ -594,66 +594,102 @@ href1.addEventListener("click", function() {
 }, false);
 
 document.getElementById("form1").onclick = function() {
-//	alert("form click");
+	// alert("form click");
 }
 
-//取消冒泡
+// 取消冒泡
 document.getElementById("fdiv1").onclick = function() {
-//	alert("fdiv1 click");
-//	event.stopPropagation();
+	// alert("fdiv1 click");
+	// event.stopPropagation();
 }
-//事件类型
+// 事件类型
 
-//ui事件
-//load事件
-document.getElementById("bd1").onload=function(){
-//	alert("body on load");
-//	alert(event.type);
-}
-
-document.getElementById("img1").onload=function(){
-//	alert("image on load");
-//	alert(event.type);
+// ui事件
+// load事件
+document.getElementById("bd1").onload = function() {
+	// alert("body on load");
+	// alert(event.type);
 }
 
-//unload
-document.getElementById("bd1").onunload=function(){
-//	alert("body unun load");
-//	alert(event.type);
+document.getElementById("img1").onload = function() {
+	// alert("image on load");
+	// alert(event.type);
 }
 
-//resize
-//document.getElementById("bd1").onresize=function(){
-//	alert("body resize");
-//	alert(event.type);
-//}
+// unload
+document.getElementById("bd1").onunload = function() {
+	// alert("body unun load");
+	// alert(event.type);
+}
 
-//焦点事件
-//blur,focus
+// resize
+// document.getElementById("bd1").onresize=function(){
+// alert("body resize");
+// alert(event.type);
+// }
 
-//鼠标与滚轮事件
-//document.getElementById("bd1").onmousewheel=function(){
-//	alert("body onmousewheel");
-//	alert(event.type);
-//}
+// 焦点事件
+// blur,focus
 
-//键盘与文本事件
-//document.getElementById("ki1").onkeydown=function(){
-//	alert(" keydown");
-//	alert("类型"+event.type);
-//	alert("键码："+event.keyCode);
-//}
+// 鼠标与滚轮事件
+// document.getElementById("bd1").onmousewheel=function(){
+// alert("body onmousewheel");
+// alert(event.type);
+// }
 
-//beforeunload
-document.getElementById("bd1").onbeforeunload=function(){
-	var res="leave?";
-	event.returnValue=res;
+// 键盘与文本事件
+// document.getElementById("ki1").onkeydown=function(){
+// alert(" keydown");
+// alert("类型"+event.type);
+// alert("键码："+event.keyCode);
+// }
+
+// beforeunload
+document.getElementById("bd1").onbeforeunload = function() {
+	var res = "leave?";
+	event.returnValue = res;
 	return res;
 }
 
-//15章使用canvas绘图
-function drawImg(){
-	var dra=document.getElementById("can1");
-	var context=dr1.getContext("2d");
-	
+// 15章使用canvas绘图
+function drawImg() {
+	var dra = document.getElementById("can1");
+	var context = dr1.getContext("2d");
+
 }
+
+function tryError() {
+	// 错误处理
+	try {
+		alert(a);
+	} catch (error) {
+		console.log(error);
+		alert(error);
+	} finally {
+		alert("finally");
+	}
+}
+//tryError();
+//错误调试
+
+//web存储机制
+sessionStorage.setItem("name","张三");
+	
+//alert(sessionStorage.getItem("name"));
+
+//h5 api
+//file api
+//file reader
+document.getElementById("f1").addEventListener("change",function(event){
+	console.log(event);
+	var f=event.target.files;
+	console.log(event.target.files);
+	var freader=new FileReader();
+	freader.readAsDataURL(f[0]);
+	console.log(freader);
+
+	var res=freader.result;
+	var iurl=window.webkitURL.createObjectURL(f[0]);
+	console.log(iurl);
+	document.getElementById("fi1").src=iurl;
+});
