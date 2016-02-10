@@ -1,0 +1,61 @@
+/*css注释*/
+/*内联样式,直接在元素中使用style*/
+/*2.选择器*/
+/* 元素选择器 */
+h2 {
+	color: #F3A3A3;
+	font: 18px;
+}
+/* 分组选择器 */
+p, h2 {
+	color: #F3A3A3;
+	font: 18px;
+}
+/* 类选择器 */
+.warning {
+	color: #EAEA31;
+	font-weight: bold;
+}
+/* id选择器 */
+#pi1 {
+	color: blue;
+}
+/* 属性选择器 */
+p[class] {
+	font-size: 18px;
+}
+
+/* 后代选择器 */
+ul {
+	color: red;
+	font-size: 20px;
+}
+
+ul li {
+	color: green;
+	font-size: 18px;
+}
+/* 选择子元素 */
+p>strong {
+	font-size: 22px;
+}
+/* 伪类选择器 */
+a:link {
+	color: blue;
+}
+
+a:vistated {
+	color: gray
+}
+
+a:active {
+	color: yellow
+}
+
+a:hover {
+	color: red
+}
+
+input:focus {
+	background-color: #CFC;
+}
