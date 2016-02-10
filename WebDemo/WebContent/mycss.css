@@ -34,6 +34,7 @@ ul {
 ul li {
 	color: green;
 	font-size: 18px;
+	display: inline; /*在同一行显示*/
 }
 /* 选择子元素 */
 p>strong {
@@ -58,4 +59,56 @@ a:hover {
 
 input:focus {
 	background-color: #CFC;
+	color: red;
+}
+/*继承*/
+/*1em=该字体的像素,如字体18像素，em=18px*/
+/*字体*/
+body {
+	font-family: cursive; /*字体*/
+	font-size: 1.5em; /*字体大小*/
+}
+
+h2 {
+	font-weight: lighter; /*字体加粗*/
+	font-style: italic; /*字体风格，斜体*/
+	line-height: 50px; /*行高*/
+}
+/*6.文本属性*/
+p {
+	text-indent: 2em; /*文本缩进*/
+	text-align: center; /*文本水平对齐*/
+	vertical-align: top; /*水平对齐*/
+	word-spacing: 2em; /*字间间隔*/
+	letter-spacing: 0.5em; /*字母间隔*/
+	text-transform: uppercase; /*文本大小写转换*/
+	text-decoration: line-through; /*文本装饰*/
+}
+
+a {
+	text-decoration: none; /*去掉链接下划线*/
+}
+/*8.内边距，边框，外边距*/
+.bcla {
+	width: 400px; /*宽*/
+	height: 200px; /*高*/
+	margin-top: 30px; /*外边距*/
+	margin-left: 330px; /*外边距*/
+	border-style: dotted; /*边框样式*/
+	border-top-style: groove; /*单个边框样式*/
+	border-right-style: groove;
+	border-width: 10px; /*边框宽度*/
+	border-color: #F3A3A3; /*边框颜色*/
+	padding: 20px;
+	padding-top: 20px; /*内边距*/
+	padding-left: 20px;
+}
+/*9.颜色和背景*/
+.bcla {
+	color: yellow; /*前景色,即文本色*/
+	background-color: #00E7FF; /*背景色*/
+	background-image: url("/WebDemo/images/t1.png"); /*背景图片*/
+	background-repeat: no-repeat; /*图像平铺*/
+	background-position: center; /*图像居中*/
+	background-attachment: fixed; /*关联,原图像相对于可视区是固定的*/
 }
