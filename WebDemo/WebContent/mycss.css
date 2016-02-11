@@ -90,8 +90,8 @@ a {
 }
 /*8.内边距，边框，外边距*/
 .bcla {
-	width: 400px; /*宽*/
-	height: 200px; /*高*/
+	width: 600px; /*宽*/
+	height: 300px; /*高*/
 	margin-top: 30px; /*外边距*/
 	margin-left: 330px; /*外边距*/
 	border-style: dotted; /*边框样式*/
@@ -106,9 +106,30 @@ a {
 /*9.颜色和背景*/
 .bcla {
 	color: yellow; /*前景色,即文本色*/
-	background-color: #00E7FF; /*背景色*/
-	background-image: url("/WebDemo/images/t1.png"); /*背景图片*/
+	background-color: #CBB3F3; /*背景色*/
+	/* 	background-image: url("/WebDemo/images/t1.png"); 背景图片 */
 	background-repeat: no-repeat; /*图像平铺*/
 	background-position: center; /*图像居中*/
-	background-attachment: fixed; /*关联,原图像相对于可视区是固定的*/
+	/* 	background-attachment: fixed; 关联,原图像相对于可视区是固定的 */
+}
+/*10.定位浮动*/
+.fi1 {
+	float: left;
+}
+
+.fp1 {
+	border-style: solid;
+	border-color: red;
+	border-width: 2px;
+	height: 20px;
+	width: 20em;
+	color: #108498;
+	text-decoration: none;
+	float: right; /*浮动*/
+	position: relative; /*定位*/
+	top: 100px; /*定位*/
+	right: 1px; /*定位  */
+	/* 	overflow: scroll; 溢出 */
+	visibility: visible; /*元素可见性*/
+	z-index: 8; /*z轴上的位置*/
 }
