@@ -18,16 +18,17 @@
 }
 
 .dp {
-	margin-top: 0px;
 	margin-bottom: 0px;
 	margin-left: 230px;
 	margin-right: auto;
+	margin-top: 0px;
 }
 
 .dchild {
-	display: inline-block;
+	font-size: 16px;
 	width: 200px;
 	height: 100px;
+	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 	border-style: solid;
@@ -35,9 +36,8 @@
 	border-color: black;
 	background-color: #F1E7F1;
 	margin: 0px;
-	padding: 0px;
-	border-style: solid;
-	margin: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
 }
 </style>
 </head>
@@ -59,6 +59,25 @@
 		<div id="d7" class="dchild">七等奖</div>
 		<div id="d8" class="dchild">八等奖</div>
 	</div>
+
+
+	<!-- 	<table width="400" border="1" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="dchild">一等奖</td>
+			<td class="dchild">二等奖</td>
+			<td class="dchild">三等奖</td>
+		</tr>
+		<tr>
+			<td>四等奖</td>
+			<td><input id="startBtn" type="button" value="抽奖"></td>
+			<td>五等奖</td>
+		</tr>
+		<tr>
+			<td>六等奖</td>
+			<td>七等奖</td>
+			<td>八等奖</td>
+		</tr>
+	</table> -->
 	<input type="button" value="停止" onclick="stopLottery()">
 	<script type="text/javascript"
 		src="<%=BasePath%>/jquery/jquery-2.1.1.js"></script>
@@ -71,7 +90,7 @@
 
 		function lottery() {
 			rn = genRandom(9, 23);//随机数
-			clid = setInterval("changeAward()", 1000);
+			clid = setInterval("changeAward()", 500);
 		}
 
 		function changeAward() {
