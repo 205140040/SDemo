@@ -26,6 +26,35 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="<%=BasePath%>/bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
 
+<!-- jquery-fancybox -->
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript"
+	src="<%=BasePath%>/fancyBox-master/lib/jquery.mousewheel.pack.js"></script>
+
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript"
+	src="<%=BasePath%>/fancyBox-master/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=BasePath%>/fancyBox-master/source/jquery.fancybox.css?v=2.1.5"
+	media="screen" />
+
+<!-- Add Button helper (this is optional) -->
+<link rel="stylesheet" type="text/css"
+	href="<%=BasePath%>/fancyBox-master/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+<script type="text/javascript"
+	src="<%=BasePath%>/fancyBox-master/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+<!-- Add Thumbnail helper (this is optional) -->
+<link rel="stylesheet" type="text/css"
+	href="<%=BasePath%>/fancyBox-master/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+<script type="text/javascript"
+	src="<%=BasePath%>/fancyBox-master/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+<!-- Add Media helper (this is optional) -->
+<script type="text/javascript"
+	src="<%=BasePath%>/fancyBox-master/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+
 <style type="text/css">
 /*基于bootstrap的imgGallary,thumbnail中的img图片样式*/
 .thumbnail img {
@@ -81,7 +110,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg2.jpg" alt="...">
 							</a>
 						</div>
@@ -89,7 +119,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg4.jpg" alt="...">
 							</a>
 						</div>
@@ -97,15 +128,17 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
-								src="<%=BasePath%>/images/timg2.jpg" alt="...">
+							<a href="<%=BasePath%>/images/5_s.jpg" class="thumbnail"
+								data-fancybox-group="button" title="5_s"> <img
+								src="<%=BasePath%>/images/5_s.jpg" alt="...">
 							</a>
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg4.jpg" alt="...">
 							</a>
 						</div>
@@ -113,7 +146,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg2.jpg" alt="...">
 							</a>
 						</div>
@@ -121,7 +155,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg4.jpg" alt="...">
 							</a>
 						</div>
@@ -129,7 +164,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg2.jpg" alt="...">
 							</a>
 						</div>
@@ -137,7 +173,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg4.jpg" alt="...">
 							</a>
 						</div>
@@ -145,7 +182,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg2.jpg" alt="...">
 							</a>
 						</div>
@@ -153,7 +191,8 @@
 							<div class="bsig-del-panel">
 								<span class="cancel">删除</span>
 							</div>
-							<a href="#" class="thumbnail"> <img
+							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
+								data-fancybox-group="button" title="timg2"> <img
 								src="<%=BasePath%>/images/timg4.jpg" alt="...">
 							</a>
 						</div>
@@ -191,6 +230,31 @@
 				//删除
 				$(this).parent().remove();
 			});
+
+			/*加载jqueryFancybox，轮播*/
+			$('.thumbnail').fancybox(
+					{
+						openEffect : 'none',
+						closeEffect : 'none',
+
+						prevEffect : 'none',
+						nextEffect : 'none',
+
+						closeBtn : false,
+
+						helpers : {
+							title : {
+								type : 'inside'
+							},
+							buttons : {}
+						},
+
+						afterLoad : function() {
+							this.title = 'Image ' + (this.index + 1) + ' of '
+									+ this.group.length
+									+ (this.title ? ' - ' + this.title : '');
+						}
+					});
 		});
 	</script>
 </body>
