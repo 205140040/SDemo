@@ -26,6 +26,7 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="<%=BasePath%>/bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
 
+
 <!-- jquery-fancybox -->
 <!-- Add mousewheel plugin (this is optional) -->
 <script type="text/javascript"
@@ -55,6 +56,16 @@
 	src="<%=BasePath%>/fancyBox-master/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 
 
+<!-- webUploader -->
+<link rel="stylesheet" type="text/css"
+	href="<%=BasePath%>/webuploader-0.1.5/css/webuploader.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=BasePath%>/webuploader-0.1.5/examples/image-upload/style.css" />
+<script type="text/javascript"
+	src="<%=BasePath%>/webuploader-0.1.5/dist/webuploader.js"></script>
+<script type="text/javascript"
+	src="<%=BasePath%>/webuploader-0.1.5/examples/image-upload/upload.js"></script>
+
 <style type="text/css">
 /*基于bootstrap的imgGallary,thumbnail中的img图片样式*/
 .thumbnail img {
@@ -77,7 +88,7 @@
 	margin-left: 18px;
 }
 
-.bsig-del-panel span.cancel {
+.bsig-del-panel span.bsig-del-cancel {
 	width: 20px;
 	height: 20px;
 	color: #FFFFFF;
@@ -100,7 +111,7 @@
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">×</button>
 					<h4 class="modal-title" id="myModalLabel">
-						<a>上传图片</a> <a>上传文件</a>
+						<a id="uploadimgbtn">上传图片</a> <a>上传文件</a>
 					</h4>
 				</div>
 				<div class="modal-body">
@@ -108,7 +119,7 @@
 					<div class="row">
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -117,7 +128,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -126,7 +137,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/5_s.jpg" class="thumbnail"
 								data-fancybox-group="button" title="5_s"> <img
@@ -135,7 +146,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -144,7 +155,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -153,7 +164,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -162,7 +173,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -171,7 +182,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -180,7 +191,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg2.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -189,7 +200,7 @@
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="bsig-del-panel">
-								<span class="cancel">删除</span>
+								<span class="bsig-del-cancel">删除</span>
 							</div>
 							<a href="<%=BasePath%>/images/timg4.jpg" class="thumbnail"
 								data-fancybox-group="button" title="timg2"> <img
@@ -201,6 +212,48 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn btn-primary">保存</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- webUploaderModal图片上传modal -->
+	<div class="element-invisible" id="webUploaderModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+		style="">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">
+						<a data-dismiss="modal" aria-hidden="true">关闭</a>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<!--头部，相册选择和格式选择-->
+
+					<div id="uploader">
+						<div class="queueList">
+							<div id="dndArea" class="placeholder">
+								<div id="filePicker"></div>
+								<p>或将照片拖到这里，单次最多可选300张</p>
+							</div>
+						</div>
+						<div class="statusBar" style="display: none;">
+							<div class="progress">
+								<span class="text">0%</span> <span class="percentage"></span>
+							</div>
+							<div class="info"></div>
+							<div class="btns">
+								<div id="filePicker2"></div>
+								<div class="uploadBtn">开始上传</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -255,6 +308,17 @@
 									+ (this.title ? ' - ' + this.title : '');
 						}
 					});
+
+			//为使webUploader点击选择图片有效，需延迟隐藏div
+			setTimeout(function() {
+				$("#webUploaderModal").attr("class", "modal fade");
+				$("#webUploaderModal").attr("style", "display: none;");
+			}, 300);
+
+			//绑定上传图片显示model
+			$("#uploadimgbtn").on("click", function() {
+				$("#webUploaderModal").modal("show");
+			});
 		});
 	</script>
 </body>
