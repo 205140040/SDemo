@@ -14,17 +14,17 @@
 
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet"
-	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	href="<%=BasePath%>/bootstrap-3.3.5/dist/css/bootstrap.min.css">
 
 <!-- 可选的Bootstrap主题文件（一般不用引入） -->
 <link rel="stylesheet"
-	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	href="<%=BasePath%>/bootstrap-3.3.5/dist/css/bootstrap-theme.min.css">
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="<%=BasePath%>/jquery/jquery.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="<%=BasePath%>/bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 /*基于bootstrap的imgGallary,thumbnail中的img图片样式*/
@@ -171,16 +171,12 @@
 
 	<script type="text/javascript">
 		$(function() {
-			// 			$(".thumbnail").hover(function() {
-			// 				var $deldiv = $(this).prev();
-			// 				$deldiv.css("height", "20px");
-			// 			}, function() {
-			// 				var $deldiv = $(this).prev();
-			// 				$deldiv.css("height", "0px");
-			// 			});
 
 			/*当鼠标移到图片上时显示删除，移走后消失*/
 			$(".thumbnail").mouseover(function() {
+				//隐藏所有的deldiv
+				var $allDelDiv = $(".bsig-del-panel").css("height", "0px");
+				//显示当前的deldiv
 				var $deldiv = $(this).prev();
 				$deldiv.css("height", "20px");
 			});
@@ -193,7 +189,6 @@
 
 			$(".bsig-del-panel").on("click", function() {
 				//删除
-				console.log($(this).parent().get(0));
 				$(this).parent().remove();
 			});
 		});
