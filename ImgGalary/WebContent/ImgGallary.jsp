@@ -171,15 +171,30 @@
 
 	<script type="text/javascript">
 		$(function() {
+			// 			$(".thumbnail").hover(function() {
+			// 				var $deldiv = $(this).prev();
+			// 				$deldiv.css("height", "20px");
+			// 			}, function() {
+			// 				var $deldiv = $(this).prev();
+			// 				$deldiv.css("height", "0px");
+			// 			});
+
 			/*当鼠标移到图片上时显示删除，移走后消失*/
 			$(".thumbnail").mouseover(function() {
 				var $deldiv = $(this).prev();
 				$deldiv.css("height", "20px");
 			});
 
-			$(".thumbnail").mouseout(function() {
-				var $deldiv = $(this).prev();
+			/*鼠标从删除panle移走时消失*/
+			$(".bsig-del-panel").mouseout(function() {
+				var $deldiv = $(this);
 				$deldiv.css("height", "0px");
+			});
+
+			$(".bsig-del-panel").on("click", function() {
+				//删除
+				console.log($(this).parent().get(0));
+				$(this).parent().remove();
 			});
 		});
 	</script>
