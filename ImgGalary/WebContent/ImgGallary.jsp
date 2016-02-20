@@ -227,10 +227,8 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel">
-						<a data-dismiss="modal" aria-hidden="true">关闭</a>
-					</h4>
+						aria-hidden="true" style="font-size: 1.2em;">关闭</button>
+
 				</div>
 				<div class="modal-body">
 					<!--头部，相册选择和格式选择-->
