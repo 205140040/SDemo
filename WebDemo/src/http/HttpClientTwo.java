@@ -17,6 +17,7 @@ import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -30,8 +31,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
@@ -219,16 +222,83 @@ public class HttpClientTwo {
 		}
 	}
 
+	/**
+	 * 池连接管理
+	 * 
+	 * @author 20514 2016年2月24日
+	 * @throws Exception
+	 * @description
+	 */
+	public static void poolingConnectionManager() throws Exception {
+		HttpRequestRetryHandler myRequestRetryHandler = new HttpRequestRetryHandler() {
+			@Override
+			public boolean retryRequest(IOException exception, int reqCount, HttpContext context) {
+				if (5 <= reqCount) {
+					// 不要重试，如​​果超过最大重试次数
+					return false;
+				}
+				if (exception instanceof InterruptedIOException) {
+					// timeout
+					return false;
+				}
+				if (exception instanceof UnknownHostException) {
+					// 未知主机
+					return false;
+				}
+				if (exception instanceof ConnectTimeoutException) {
+					//// 拒绝连接
+					return false;
+				}
+				if (exception instanceof SSLException) {
+					// SSL handshake exception
+					return false;
+				}
+				HttpClientContext clientContext = HttpClientContext.adapt(context);
+				HttpRequest request = clientContext.getRequest();
+				boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
+				if (idempotent) {
+					// //重试，如果请求被认为是幂等
+					return true;
+				}
+				return false;
+			}
+		};
+
+		PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+		// 最大连接数
+		cm.setMaxTotal(200);
+		// 每条路线//增加默认最大连接20
+		cm.setDefaultMaxPerRoute(20);
+		HttpHost localhost = new HttpHost("localhost", 80);
+		cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+		CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(cm)
+				.setRetryHandler(myRequestRetryHandler).build();
+		URI uri = getUri();
+		List<BasicNameValuePair> params = new ArrayList<>();
+		params.add(new BasicNameValuePair("sname", "萌萌哒"));
+		UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
+		HttpPost httpPost = new HttpPost(uri);
+		httpPost.setEntity(formEntity);
+		CloseableHttpResponse response = httpClient.execute(httpPost);
+		try {
+			System.out.println("响应类容：" + EntityUtils.toString(response.getEntity()));
+		} finally {
+			response.close();
+		}
+	}
+
 	public static void main(String[] args) throws URISyntaxException, Exception {
-		simpleExample();
-		System.out.println("----------httpGet");
-		doGet();
-		System.out.println("----------PostForm");
-		postForm();
-		System.out.println("----------httpHandler");
-//		httpHandler();
-		System.out.println("----------httpHandler");
-		doPostWithRetry();
+//		simpleExample();
+//		System.out.println("----------httpGet");
+//		doGet();
+//		System.out.println("----------PostForm");
+//		postForm();
+//		System.out.println("----------httpHandler");
+//		// httpHandler();
+//		System.out.println("----------httpHandler");
+//		doPostWithRetry();
+		System.out.println("----------池连接管理");
+		poolingConnectionManager();
 	}
 
 }
