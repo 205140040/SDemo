@@ -108,6 +108,8 @@ public class ClientMultipartFormPost {
 					return null;
 				}
 			};
+			multipartFile.getBytes();
+			File file=new File("c://aa.txt");
 			CommonsMultipartFile cf = (CommonsMultipartFile) multipartFile;
 			DiskFileItem fi = (DiskFileItem) cf.getFileItem();
 			File f = fi.getStoreLocation();

@@ -32,12 +32,17 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.routing.HttpRoute;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.springframework.util.Assert;
+import org.springframework.web.multipart.MultipartFile;
 
 public class HttpClientTwo {
 	/**
@@ -273,6 +278,13 @@ public class HttpClientTwo {
 		cm.setMaxPerRoute(new HttpRoute(localhost), 50);
 		CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(cm)
 				.setRetryHandler(myRequestRetryHandler).build();
+		// org.apache.http.params.HttpParams httpparams =
+		// httpClient.getParams();
+		// HttpConnectionParams.setSoTimeout(httpparams, 60 * 1000);// 设定连接等待时间
+		// HttpConnectionParams.setConnectionTimeout(httpparams, 60 * 1000);//
+		// 设定超时时间
+       // 设置连接时间  
+
 		URI uri = getUri();
 		List<BasicNameValuePair> params = new ArrayList<>();
 		params.add(new BasicNameValuePair("sname", "萌萌哒"));
@@ -288,17 +300,40 @@ public class HttpClientTwo {
 	}
 
 	public static void main(String[] args) throws URISyntaxException, Exception {
-//		simpleExample();
-//		System.out.println("----------httpGet");
-//		doGet();
-//		System.out.println("----------PostForm");
-//		postForm();
-//		System.out.println("----------httpHandler");
-//		// httpHandler();
-//		System.out.println("----------httpHandler");
-//		doPostWithRetry();
+		// simpleExample();
+		// System.out.println("----------httpGet");
+		// doGet();
+		// System.out.println("----------PostForm");
+		// postForm();
+		// System.out.println("----------httpHandler");
+		// // httpHandler();
+		// System.out.println("----------httpHandler");
+		// doPostWithRetry();
 		System.out.println("----------池连接管理");
 		poolingConnectionManager();
+	}
+	
+	public static MultipartEntityBuilder createMultipartEntityBuilderByMultipartFile(
+			MultipartFile file) throws IOException {
+		MultipartEntityBuilder multipartEntity = null;
+		try {
+
+			Assert.notNull(file);
+			multipartEntity = MultipartEntityBuilder.create();
+			// input = file.getInputStream();
+			// file.getBytes();
+
+			String filename = file.getOriginalFilename();
+			// multipartEntity.addPart("files", new InputStreamBody(input,
+			// filename));
+			//new FileBody(file,ContentType.APPLICATION_JSON,filename);
+			multipartEntity.addPart("files", new ByteArrayBody(file.getBytes(),
+					filename));
+		} catch (IOException e) {
+			throw e;
+		}
+		return multipartEntity;
+
 	}
 
 }
