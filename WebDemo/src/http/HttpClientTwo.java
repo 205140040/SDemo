@@ -25,6 +25,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -34,7 +35,6 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.ByteArrayBody;
-import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -278,18 +278,16 @@ public class HttpClientTwo {
 		cm.setMaxPerRoute(new HttpRoute(localhost), 50);
 		CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(cm)
 				.setRetryHandler(myRequestRetryHandler).build();
-		// org.apache.http.params.HttpParams httpparams =
-		// httpClient.getParams();
-		// HttpConnectionParams.setSoTimeout(httpparams, 60 * 1000);// 设定连接等待时间
-		// HttpConnectionParams.setConnectionTimeout(httpparams, 60 * 1000);//
-		// 设定超时时间
-       // 设置连接时间  
 
 		URI uri = getUri();
 		List<BasicNameValuePair> params = new ArrayList<>();
 		params.add(new BasicNameValuePair("sname", "萌萌哒"));
 		UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
 		HttpPost httpPost = new HttpPost(uri);
+		// 设定超时时间
+		// 设置连接时间
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(2000).setConnectTimeout(2000).build();// 设置请求和传输超时时间
+		httpPost.setConfig(requestConfig);
 		httpPost.setEntity(formEntity);
 		CloseableHttpResponse response = httpClient.execute(httpPost);
 		try {
@@ -312,9 +310,9 @@ public class HttpClientTwo {
 		System.out.println("----------池连接管理");
 		poolingConnectionManager();
 	}
-	
-	public static MultipartEntityBuilder createMultipartEntityBuilderByMultipartFile(
-			MultipartFile file) throws IOException {
+
+	public static MultipartEntityBuilder createMultipartEntityBuilderByMultipartFile(MultipartFile file)
+			throws IOException {
 		MultipartEntityBuilder multipartEntity = null;
 		try {
 
@@ -326,9 +324,8 @@ public class HttpClientTwo {
 			String filename = file.getOriginalFilename();
 			// multipartEntity.addPart("files", new InputStreamBody(input,
 			// filename));
-			//new FileBody(file,ContentType.APPLICATION_JSON,filename);
-			multipartEntity.addPart("files", new ByteArrayBody(file.getBytes(),
-					filename));
+			// new FileBody(file,ContentType.APPLICATION_JSON,filename);
+			multipartEntity.addPart("files", new ByteArrayBody(file.getBytes(), filename));
 		} catch (IOException e) {
 			throw e;
 		}
