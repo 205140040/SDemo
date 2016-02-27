@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.net.ssl.SSLException;
 
@@ -20,8 +21,10 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.routing.HttpRoute;
@@ -32,6 +35,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * HttpClientUtils
@@ -103,6 +109,35 @@ public class HttpClientUtils {
 	}
 
 	/**
+	 * 获取uri
+	 * 
+	 * @author 20514 2016年2月27日
+	 * @description
+	 * @param scheme
+	 *            如:http或https
+	 * @param host
+	 *            主机名:如：localhost:8080
+	 * @param path
+	 *            请求路径:如：/WebDemo/HttpClientServlet
+	 * @param params
+	 *            List<NameValuePair> url?参数list
+	 * @return
+	 */
+	public static URI getUri(String scheme, String host, String path, List<NameValuePair> params) {
+		URI uri = null;
+		try {
+			if (params.isEmpty()) {
+				uri = new URIBuilder().setScheme(scheme).setHost(host).setPath(path).build();
+			} else {
+				uri = new URIBuilder().setScheme(scheme).setHost(host).setPath(path).setParameters(params).build();
+			}
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return uri;
+	}
+
+	/**
 	 * get请求
 	 * 
 	 * @author 20514 2016年2月27日
@@ -129,51 +164,188 @@ public class HttpClientUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				response.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (null != response) {
+				try {
+					response.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return res;
 	}
 
 	/**
-	 * 获取uri
+	 * post请求
 	 * 
 	 * @author 20514 2016年2月27日
 	 * @description
-	 * @param scheme
-	 *            如:http或https
-	 * @param host
-	 *            主机名:如：localhost:8080
-	 * @param path
-	 *            请求路径:如：/WebDemo/HttpClientServlet
+	 * @param uri
 	 * @param params
-	 *            List<NameValuePair> 参数list
+	 *            List<NameValuePair>请求参数
 	 * @return
 	 */
-	public static URI getUri(String scheme, String host, String path, List<NameValuePair> params) {
-		URI uri = null;
-		try {
-			if (params.isEmpty()) {
-				uri = new URIBuilder().setScheme(scheme).setHost(host).setPath(path).build();
-			} else {
-				uri = new URIBuilder().setScheme(scheme).setHost(host).setPath(path).setParameters(params).build();
+	public static String post(URI uri, List<NameValuePair> params) {
+		String res = null;
+		HttpPost httpPost = new HttpPost(uri);
+		httpPost.setConfig(requestConfig);
+		if (!params.isEmpty()) {
+			UrlEncodedFormEntity formEntity;
+			try {
+				formEntity = new UrlEncodedFormEntity(params, CHAR_SET);
+				httpPost.setEntity(formEntity);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
 			}
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
 		}
-		return uri;
+		CloseableHttpResponse response = null;
+		try {
+			response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				res = EntityUtils.toString(response.getEntity(), CHAR_SET);
+			} else {
+				res = "响应状态码 = " + response.getStatusLine().getStatusCode();
+				logger.info(res);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (null != response) {
+				try {
+					response.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return res;
+	}
+
+	/**
+	 * post一个form实体对象请求
+	 * 
+	 * @author 20514 2016年2月27日
+	 * @description
+	 * @param uri
+	 * @param t
+	 *            form表单实体对象
+	 * @return
+	 */
+	public static <T> String postBean(URI uri, T t) {
+		String res = null;
+		HttpPost httpPost = new HttpPost(uri);
+		httpPost.setConfig(requestConfig);
+		List<NameValuePair> params = new ArrayList<>();
+		if (null != t) {
+			JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(t));
+			if (null != jsonObject.entrySet() && !jsonObject.entrySet().isEmpty()) {
+				for (Entry<String, Object> entry : jsonObject.entrySet()) {
+					params.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
+				}
+			}
+		}
+		if (!params.isEmpty()) {
+			UrlEncodedFormEntity formEntity;
+			try {
+				formEntity = new UrlEncodedFormEntity(params, CHAR_SET);
+				httpPost.setEntity(formEntity);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		CloseableHttpResponse response = null;
+		try {
+			response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				res = EntityUtils.toString(response.getEntity(), CHAR_SET);
+			} else {
+				res = "响应状态码 = " + response.getStatusLine().getStatusCode();
+				logger.info(res);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (null != response) {
+				try {
+					response.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return res;
+	}
+
+	/**
+	 * postFile请求 ,上传文件
+	 * 
+	 * @author 20514 2016年2月27日
+	 * @description
+	 * @param uri
+	 * @param params
+	 *            List<NameValuePair>请求参数
+	 * @return
+	 */
+	public static String postFile(URI uri, List<NameValuePair> params) {
+		String res = null;
+		HttpPost httpPost = new HttpPost(uri);
+		httpPost.setConfig(requestConfig);
+		if (!params.isEmpty()) {
+			UrlEncodedFormEntity formEntity;
+			try {
+				formEntity = new UrlEncodedFormEntity(params, CHAR_SET);
+				httpPost.setEntity(formEntity);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		CloseableHttpResponse response = null;
+		try {
+			response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				res = EntityUtils.toString(response.getEntity(), CHAR_SET);
+			} else {
+				res = "响应状态码 = " + response.getStatusLine().getStatusCode();
+				logger.info(res);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (null != response) {
+				try {
+					response.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return res;
 	}
 
 	public static void main(String[] args) throws URISyntaxException, UnsupportedEncodingException {
 		List<NameValuePair> params = new ArrayList<>();
-		params.add(new BasicNameValuePair("sname", "mengmeng"));
+		// params.add(new BasicNameValuePair("sname", "mengmeng"));
 		URI uri = getUri("http", "localhost:8080", "/WebDemo/HttpClientServlet", params);
-		System.out.println(uri);
-		String res = HttpClientUtils.get(uri);
-		System.out.println(res);
+		// System.out.println(uri);
+		// String res = HttpClientUtils.get(uri);
+		// System.out.println(res);
+
+		List<NameValuePair> postParams = new ArrayList<>();
+		// postParams.add(new BasicNameValuePair("sname", "小馒头"));
+		// String postres = post(uri, postParams);
+		// System.out.println("postRes:" + postres);
+
+		Student student = new Student("提百万2", "提莫", 19);
+		System.out.println(JSON.toJSONString(postParams));
+		String postres = postBean(uri, student);
+		System.out.println("postRes:" + postres);
 	}
 
 }
