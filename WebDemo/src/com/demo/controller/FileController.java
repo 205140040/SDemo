@@ -1,15 +1,19 @@
 package com.demo.controller;
 
-import java.io.File;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.http.NameValuePair;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import http.HttpClientUtils;
 
 @RequestMapping("/file")
 @Controller
@@ -28,27 +32,18 @@ public class FileController {
 	@RequestMapping(value = "/upload")
 	@ResponseBody
 	public String upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		String res = "";
 		try {
 			if (!file.isEmpty()) {
-				// 保存文件
-				System.out.println(file.getOriginalFilename());
-				saveFile(file.getOriginalFilename(), file, request);
+				// 通过httpClient实现跨域上传文件
+				List<NameValuePair> params = new ArrayList<>();
+				URI uri = HttpClientUtils.getUri("http", "localhost:8080", "/FileWebDemo/file/upload", params);
+				res = HttpClientUtils.postMultipartFile(uri, file);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "保存成功";
+		return res;
 	}
 
-	private void saveFile(String filename, MultipartFile photo, HttpServletRequest request) {
-		try {
-			File file = new File("d://" + "webimage/" + filename);
-			// ʹ使用 Commons-io 上传文件
-			FileUtils.writeByteArrayToFile(file, photo.getBytes());//
-			System.out.println("上传完成");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 }

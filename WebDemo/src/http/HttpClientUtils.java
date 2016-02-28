@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import javax.net.ssl.SSLException;
 
 import org.apache.commons.httpclient.ConnectTimeoutException;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -28,6 +29,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.routing.HttpRoute;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -35,6 +39,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -282,7 +287,7 @@ public class HttpClientUtils {
 	}
 
 	/**
-	 * postFile请求 ,上传文件
+	 * postMultipartFile请求 ,上传文件
 	 * 
 	 * @author 20514 2016年2月27日
 	 * @description
@@ -290,17 +295,22 @@ public class HttpClientUtils {
 	 * @param params
 	 *            List<NameValuePair>请求参数
 	 * @return
+	 * @throws IOException
 	 */
-	public static String postFile(URI uri, List<NameValuePair> params) {
+	public static String postMultipartFile(URI uri, MultipartFile multipartFile) {
 		String res = null;
 		HttpPost httpPost = new HttpPost(uri);
 		httpPost.setConfig(requestConfig);
-		if (!params.isEmpty()) {
-			UrlEncodedFormEntity formEntity;
+		if (!multipartFile.isEmpty()) {
+			HttpEntity httpEntity;
 			try {
-				formEntity = new UrlEncodedFormEntity(params, CHAR_SET);
-				httpPost.setEntity(formEntity);
+				ContentBody contentBody = new ByteArrayBody(multipartFile.getBytes(),
+						multipartFile.getOriginalFilename());
+				httpEntity = MultipartEntityBuilder.create().addPart("file", contentBody).build();
+				httpPost.setEntity(httpEntity);
 			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
