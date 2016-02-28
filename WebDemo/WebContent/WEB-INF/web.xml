@@ -25,30 +25,20 @@
 	<!-- </servlet-mapping> -->
 
 	<!-- 配置初始化参数 -->
-<!-- 	<servlet>
-		<servlet-name>initServlet</servlet-name>
-		<servlet-class>c001.InitServlet</servlet-class>
-		<init-param>
-			<param-name>username</param-name>
-			<param-value>zhangsan</param-value>
-		</init-param>
-		<init-param>
-			<param-name>pwd</param-name>
-			<param-value>666</param-value>
-		</init-param>
-		启动时首先加载
-		<load-on-startup>0</load-on-startup>
-	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>initServlet</servlet-name> -->
-<!-- 		<url-pattern>/initServlet</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+	<!-- <servlet> <servlet-name>initServlet</servlet-name> <servlet-class>c001.InitServlet</servlet-class> 
+		<init-param> <param-name>username</param-name> <param-value>zhangsan</param-value> 
+		</init-param> <init-param> <param-name>pwd</param-name> <param-value>666</param-value> 
+		</init-param> 启动时首先加载 <load-on-startup>0</load-on-startup> </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>initServlet</servlet-name> -->
+	<!-- <url-pattern>/initServlet</url-pattern> -->
+	<!-- </servlet-mapping> -->
 	<!-- 应用程序上下文参数 -->
-	<context-param>
-		<description>应用程序上下文参数</description>
-		<param-name>username</param-name>
-		<param-value>jiangzi</param-value>
-	</context-param>
+	<!-- <context-param> -->
+	<!-- <description>应用程序上下文参数</description> -->
+	<!-- <param-name>username</param-name> -->
+	<!-- <param-value>jiangzi</param-value> -->
+	<!-- </context-param> -->
 	<!-- 配置过滤器 -->
 	<!-- <filter> -->
 	<!-- <filter-name>filter1</filter-name> -->
@@ -59,11 +49,7 @@
 	<!-- <filter-name>filter1</filter-name> -->
 	<!-- <servlet-name>initServlet</servlet-name> -->
 	<!-- </filter-mapping> -->
-	<!-- 配置欢迎页面 -->
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
+
 	<!-- 配置错误页面 -->
 	<!-- <error-page> -->
 	<!-- <error-code>404</error-code> -->
@@ -82,11 +68,7 @@
 		<url-pattern>/servlet1</url-pattern> </web-resource-collection> 只有这些用户可以访问该url 
 		<auth-constraint> <role-name>admin</role-name> <role-name>jiangzi</role-name> 
 		</auth-constraint> </security-constraint> -->
-	<!-- 控制回话失效时间 -->
-	<session-config>
-		<!--15分钟失效 -->
-		<session-timeout>30</session-timeout>
-	</session-config>
+
 	<!-- 配置jsp taglib -->
 	<!-- <jsp-config> <taglib> <taglib-uri>/taglib1</taglib-uri> <taglib-location>/WEB-INF/tlds/taglib1.tld</taglib-location> 
 		</taglib> <jsp-property-group> 可用于所有该目录 <url-pattern>/WEB-INF/jsp/*</url-pattern> 
@@ -105,10 +87,10 @@
 	<!-- <url-pattern>/*</url-pattern> -->
 	<!-- </filter-mapping> -->
 	<!--配置公司名称监听器 -->
-	<context-param>
-		<param-name>companyName</param-name>
-		<param-value>com.yosemite</param-value>
-	</context-param>
+	<!-- <context-param> -->
+	<!-- <param-name>companyName</param-name> -->
+	<!-- <param-value>com.yosemite</param-value> -->
+	<!-- </context-param> -->
 	<!-- <listener> -->
 	<!-- <listener-class>c001.CompanyContextListener</listener-class> -->
 	<!-- </listener> -->
@@ -166,39 +148,73 @@
 	<!-- <url-pattern>/RequestDemo</url-pattern> -->
 	<!-- </servlet-mapping> -->
 
+	<!-- <servlet> -->
+	<!-- <servlet-name>GetParameter</servlet-name> -->
+	<!-- <servlet-class>servlet.GetParameter</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>GetParameter</servlet-name> -->
+	<!-- <url-pattern>/GetParameter</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>CookieServlet</servlet-name> -->
+	<!-- <servlet-class>servlet.CookieServlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>CookieServlet</servlet-name> -->
+	<!-- <url-pattern>/CookieServlet</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>CookieServlet2</servlet-name> -->
+	<!-- <servlet-class>servlet.CookieServlet2</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>CookieServlet2</servlet-name> -->
+	<!-- <url-pattern>/CookieServlet2</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>LoginSessionServlet</servlet-name> -->
+	<!-- <servlet-class>servlet.LoginSessionServlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>LoginSessionServlet</servlet-name> -->
+	<!-- <url-pattern>/LoginSessionServlet</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!-- 配置contextConfigLocation -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- 配置springServlet -->
 	<servlet>
-		<servlet-name>GetParameter</servlet-name>
-		<servlet-class>servlet.GetParameter</servlet-class>
+		<servlet-name>springMvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>GetParameter</servlet-name>
-		<url-pattern>/GetParameter</url-pattern>
+		<servlet-name>springMvc</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>CookieServlet</servlet-name>
-		<servlet-class>servlet.CookieServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CookieServlet</servlet-name>
-		<url-pattern>/CookieServlet</url-pattern>
-	</servlet-mapping>
+	<!-- spring监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
-	<servlet>
-		<servlet-name>CookieServlet2</servlet-name>
-		<servlet-class>servlet.CookieServlet2</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CookieServlet2</servlet-name>
-		<url-pattern>/CookieServlet2</url-pattern>
-	</servlet-mapping>
+	<!-- 配置欢迎页面 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 
-	<servlet>
-		<servlet-name>LoginSessionServlet</servlet-name>
-		<servlet-class>servlet.LoginSessionServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LoginSessionServlet</servlet-name>
-		<url-pattern>/LoginSessionServlet</url-pattern>
-	</servlet-mapping>
+	<!-- 控制回话失效时间 -->
+	<session-config>
+		<!--15分钟失效 -->
+		<session-timeout>120</session-timeout>
+	</session-config>
 </web-app>
