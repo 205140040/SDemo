@@ -11,8 +11,9 @@ public class StartWebApp {
 	public static void main(String[] args) throws Exception {
 		try {
 			@SuppressWarnings("unused")
-			ApplicationContext applicationContext = new FileSystemXmlApplicationContext(
-					new String[] { "D://JAVASoft//GitProject//GitRep//WebDemo//WebContent//WEB-INF//applicationContext.xml" });
+			ApplicationContext applicationContext = new FileSystemXmlApplicationContext(new String[] {
+					"D://JAVASoft//GitProject//GitRep//WebDemo//WebContent//WEB-INF//applicationContext.xml" });
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -189,15 +189,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
-	<!-- jettyListener -->
-	<listener>
-		<listener-class>org.eclipse.jetty.servlet.listener.ELContextCleaner</listener-class>
-	</listener>
-	<!-- jettyListener -->
-
-	<listener>
-		<listener-class>org.eclipse.jetty.servlet.listener.IntrospectorCleaner</listener-class>
-	</listener>
+	
 
 	<!-- 配置springServlet -->
 	<servlet>
