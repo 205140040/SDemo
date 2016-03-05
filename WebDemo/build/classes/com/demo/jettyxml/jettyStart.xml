@@ -43,12 +43,33 @@
 http://www.springframework.org/schema/task/spring-task-3.0.xsd 
 	">
 
+	<!-- =============================================================== -->
+	<!-- Configure the Jetty Server with Spring -->
+	<!-- This file is the similar to jetty.xml, but written in spring -->
+	<!-- XmlBeanFactory format. -->
+	<!-- =============================================================== -->
 
-	<!-- 启用mvc注解 -->
-	<mvc:annotation-driven />
-
-	<!-- 扫描component，controller，repository,service -->
-	<context:component-scan base-package="com.demo.*">
-	</context:component-scan>
+	<bean id="server" class="org.eclipse.jetty.server.Server"
+		init-method="start" destroy-method="stop">
+		<property name="connectors">
+			<list>
+				<bean id="Connector" class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+					<property name="port">
+						<value>8080</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<property name="handler">
+			<bean id="webAppContext" class="org.eclipse.jetty.webapp.WebAppContext">
+				<property name="defaultsDescriptor"
+					value="com/demo/jettyxml/webdefault.xml" />
+				<property name="contextPath">
+					<value>/</value>
+				</property>
+				<property name="resourceBase" value="WebContent" />
+			</bean>
+		</property>
+	</bean>
 
 </beans>
