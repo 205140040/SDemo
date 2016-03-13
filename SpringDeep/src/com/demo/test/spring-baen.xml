@@ -22,12 +22,7 @@
       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
       ">
 
-	<!-- 启用mvc注解 -->
-	<mvc:annotation-driven />
-
-	<!-- 扫描component，controller，repository,service -->
-	<context:component-scan base-package="com.demo.*">
-	</context:component-scan>
-	<!-- spring-mybatis.xml配置 -->
-	<import resource="spring-mybatis.xml" />
+	<bean id="user" class="com.demo.bean.User">
+		<property name="userName" value="酱紫"></property>
+	</bean>
 </beans>

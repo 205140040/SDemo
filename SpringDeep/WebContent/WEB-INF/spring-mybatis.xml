@@ -26,7 +26,7 @@
 	<context:property-placeholder location="/WEB-INF/config-prop/*.properties" />
 	<!-- 获取properties数据源文件 方式一 -->
 	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		<property name="locations"> <list> 如果有多个，可以在下面列出来 <value>/WEB-INF/config-prop/*.properties</value> 
+		<property name="locations"> <list> 如果有多个，可以在下面列出来 <value>/WEB-INF/config-prop/db.properties</value> 
 		</list> </property> </bean> -->
 
 
