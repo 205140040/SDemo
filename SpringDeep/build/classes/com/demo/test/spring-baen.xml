@@ -22,7 +22,73 @@
       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
       ">
 
-	<bean id="user" class="com.demo.bean.User">
+	<bean id="user" class="com.demo.bean.User" scope="prototype">
+		<!-- 属性注入 -->
 		<property name="userName" value="酱紫"></property>
+		<property name="password">
+			<value>null</value>
+		</property>
 	</bean>
+
+	<!-- 构造函数注入,索引入参 -->
+	<bean id="user2" class="com.demo.bean.User">
+		<constructor-arg index="1" type="java.lang.String">
+			<value>提莫队长</value>
+		</constructor-arg>
+		<constructor-arg index="0" type="java.lang.String">
+			<value>哈哈哈哈哈</value>
+		</constructor-arg>
+	</bean>
+	<!-- 工厂注入 -->
+	<bean id="userFac" class="com.demo.bean.UserFactory"
+		factory-method="getUserInstance"></bean>
+
+	<!-- bean后置处理器 -->
+	<bean id="myPostPro" class="com.demo.test.BeanFactoryPostProTest"></bean>
+
+
+	<bean id="sm1" class="com.demo.bean.SuperMarket">
+		<!-- 级联注入 -->
+		<property name="user.userName" value="超市啊啊啊"></property>
+		<!-- list注入 -->
+		<property name="nameList">
+			<list>
+				<value>提莫1</value>
+				<value>提莫2</value>
+				<value>提莫3</value>
+			</list>
+		</property>
+		<!-- 属性注入 -->
+		<property name="pros">
+			<props>
+				<prop key="uname">体检</prop>
+				<prop key="pwd">666</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- lookup注入prototype对象 -->
+	<bean id="stu1" class="com.demo.bean.Student">
+		<lookup-method name="getUser" bean="user" />
+	</bean>
+	<!-- 继承bean -->
+	<bean id="pUser" class="com.demo.bean.User" abstract="true">
+		<property name="userName" value="啦啦啦"></property>
+	</bean>
+	<bean id="cu1" class="com.demo.bean.User" parent="pUser"></bean>
+	<bean id="cu2" class="com.demo.bean.User" parent="pUser"></bean>
+	<!--整合多个配置文件，import导入 -->
+	<import resource="spring-baen2.xml" />
+
+	<!-- 扫描注解定义的类容 -->
+	<context:component-scan base-package="com.demo.annation">
+		<!-- 包含 -->
+		<context:include-filter type="regex"
+			expression="com/demo/annation/bean" />
+		<!-- 不包含 -->
+		<context:exclude-filter type="regex"
+			expression="com/demo/controller" />
+		<context:exclude-filter type="regex"
+			expression="com/demo/service" />
+	</context:component-scan>
 </beans>

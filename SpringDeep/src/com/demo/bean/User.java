@@ -20,6 +20,22 @@ public class User implements Serializable {
 	private Date updateTime;
 
 	private String lastIp;
+	
+	
+
+	public User() {
+		super();
+	}
+	
+	
+
+	public User(String userName, String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
+	}
+
+
 
 	public Integer getUserId() {
 		return userId;
