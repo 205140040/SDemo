@@ -31,6 +31,10 @@
 			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
 			<bean class="com.demo.interceptor.LogInterecptor" />
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.demo.login.interecptor.LoginInterecptor"></bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 </beans>

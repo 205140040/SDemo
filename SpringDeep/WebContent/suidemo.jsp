@@ -95,9 +95,20 @@ zj
 			function addItems(number, lastIndex) {
 				// 生成新条目的HTML
 				var html = '';
+				var cta = '<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">'
+						+ '<tr>'
+						+ '<td>18日</td>'
+						+ '<td rowspan="2"><img src="http://m.vstate.cn/images/investmentDatetails/TuBiao-JiaoYiJiLu-HuoQiShouYi@3x.png" style="height:30px;width:30px;"></td>'
+						+ '<td>+666,666,66.66</td>'
+						+ '<td rowspan="2"><span style="font-size:12px;">成功</span></td>'
+						+ '</tr>'
+						+ ' <tr>'
+						+ '<td>16:42</td>'
+						+ '<td><span style="font-size:12px;">投资活期·V计划第005期(锁定180天)</span></td>'
+						+ '</tr>' + '</table>';
 				for (var i = lastIndex + 1; i <= lastIndex + number; i++) {
-					html += '<li class="item-content"><div class="item-inner"><div class="item-title" style="text-align：center;">'
-							+ '投资活期00' + i + '</div></div></li>';
+					html += '<li class="item-content"><div class="item-inner"><div class="item-title" >'
+							+ cta + '</div></div></li>';
 				}
 				// 添加新条目
 				$('.infinite-scroll-bottom .list-container').append(html);

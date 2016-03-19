@@ -27,6 +27,11 @@
 
 	<!-- 扫描component，controller，repository,service -->
 	<context:component-scan base-package="com.demo.*">
+		<context:exclude-filter type="regex"
+			expression="com/demo/annation/bean" />
+		<context:exclude-filter type="regex"
+			expression="com/demo/test" />
+
 	</context:component-scan>
 	<!-- spring-mybatis.xml配置 -->
 	<import resource="spring-mybatis.xml" />

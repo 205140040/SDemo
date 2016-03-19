@@ -1,7 +1,5 @@
 package com.demo.interceptor;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,18 +39,8 @@ public class LogInterecptor extends HandlerInterceptorAdapter {
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
-		String name = req.getParameter("name");
-		System.out.println("-----预处理：name:" + name);
-		if ("admin".equalsIgnoreCase(name)) {
-
-			return true;
-		} else {
-			res.setCharacterEncoding("UTF-8");
-			res.setContentType("text/html");
-			PrintWriter out = res.getWriter();
-			out.println("无权访问");
-			return false;
-		}
+		System.out.println("-----预处理：拦截器开始:");
+		return true;
 	}
 
 }
