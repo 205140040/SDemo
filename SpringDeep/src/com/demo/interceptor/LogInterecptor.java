@@ -40,6 +40,7 @@ public class LogInterecptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
 		System.out.println("-----预处理：拦截器开始:");
+		res.setCharacterEncoding("UTF-8");
 		return true;
 	}
 

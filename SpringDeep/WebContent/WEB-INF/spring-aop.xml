@@ -22,20 +22,15 @@
       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
       ">
 
-	<!-- 启用mvc注解 -->
-	<mvc:annotation-driven />
-
-	<!-- 扫描component，controller，repository,service -->
-	<context:component-scan base-package="com.demo.*">
-		<context:exclude-filter type="regex"
-			expression="com/demo/annation/bean" />
-		<context:exclude-filter type="regex"
-			expression="com/demo/test" />
-
-	</context:component-scan>
-	<!-- spring-mybatis.xml配置 -->
-	<import resource="spring-mybatis.xml" />
-	<import resource="spring-interceptor.xml" />
-	<import resource="spring-aop.xml" />
+	<bean id="checkTokenInterceptor" class="com.demo.aop.TokenInterceptor"></bean>
+	<!-- 配置aop方法拦截器 -->
+	<aop:config>
+		<!-- 切点 -->
+		<aop:pointcut expression="execution(* com.demo.controller.*.*(..))"
+			id="beforePoint" />
+		<!-- 通知类 -->
+		<aop:advisor advice-ref="checkTokenInterceptor"
+			pointcut-ref="beforePoint" />
+	</aop:config>
 
 </beans>
