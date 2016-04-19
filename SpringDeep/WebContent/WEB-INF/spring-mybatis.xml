@@ -25,12 +25,14 @@
 	<!--读取多个配置文件 -->
 	<context:property-placeholder location="/WEB-INF/config-prop/*.properties" />
 	<!-- 获取properties数据源文件 方式一 -->
-	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		<property name="locations"> <list> 如果有多个，可以在下面列出来 <value>/WEB-INF/config-prop/db.properties</value> 
-		</list> </property> </bean> -->
+	<!--  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="locations"> 
+		<list> 如果有多个，可以在下面列出来 
+		<value>/WEB-INF/config-prop/db.properties</value> 
+		</list> </property> </bean>  -->
 
 
-	<!-- 配置数据源 -->
+<!-- 	 配置数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
@@ -47,9 +49,9 @@
 		</property>
 	</bean>
 
-	<!-- mapperScanner -->
+<!-- 	mapperScanner -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com/demo/dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-	</bean>
+	</bean> 
 </beans>

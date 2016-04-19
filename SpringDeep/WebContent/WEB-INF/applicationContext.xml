@@ -31,11 +31,14 @@
 			expression="com/demo/annation/bean" />
 		<context:exclude-filter type="regex"
 			expression="com/demo/test" />
-
+			<!-- <context:exclude-filter type="regex"
+			expression="com/demo/controller" />
+			<context:exclude-filter type="regex"
+			expression="com/demo/service" /> -->
 	</context:component-scan>
 	<!-- spring-mybatis.xml配置 -->
 	<import resource="spring-mybatis.xml" />
-	<import resource="spring-interceptor.xml" />
+<!-- 	<import resource="spring-interceptor.xml" /> -->
 	<import resource="spring-aop.xml" />
 
 </beans>
