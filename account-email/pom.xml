@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.demo</groupId>
+	<artifactId>account-email</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>account-email Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<!--spring归类依赖version -->
+	<properties>
+		<springframework.version>4.1.6.RELEASE</springframework.version>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!--添加fastjson的依赖 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.7</version>
+		</dependency>
+		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>fastjson</artifactId> 
+			<version>1.2.7</version> 依赖范围： 1.compile默认的 为测试范围 <scope>test</scope> 可选性依赖，其他依赖account-email的，不会关联该依赖，需要声明此依赖 
+			<optional>true</optional> 排除该依赖 <exclusions> <exclusion> <groupId>com.demo</groupId> 
+			<artifactId>testJson</artifactId> </exclusion> </exclusions> </dependency> -->
+
+
+		<!--spring依赖，使用归类依赖，将version定义为一个属性 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+	</dependencies>
+	<!--配置远程仓库 -->
+	<repositories>
+		<repository>
+			<!-- 仓库id，必须唯一 -->
+			<id>jboss</id>
+			<name>jbossRep</name>
+			<!--仓库url -->
+			<url>http://repository.jboss.com/maven2</url>
+			<!-- 下载发布版本 -->
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<!-- 禁用快照版本 -->
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<!-- 仓库的布局是maven3的布局 -->
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+	<build>
+		<finalName>account-email</finalName>
+		<!-- 自定义绑定插件 -->
+		<plugins>
+			<!-- 生成sources源码包的插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<!-- 执行配置 -->
+				<executions>
+					<execution>
+						<id>attach-source</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
