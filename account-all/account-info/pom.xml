@@ -4,9 +4,11 @@
 	<!-- 设置父模块 -->
 	<parent>
 		<groupId>com.demo</groupId>
-		<artifactId>account-parent</artifactId>
+		<artifactId>account-all</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<!--当父模块作为父级目录时，不需要配置路径 
 		<relativePath>../account-parent/pom.xml</relativePath>
+		 -->
 	</parent>
 
 	<!-- <groupId>com.demo</groupId> -->

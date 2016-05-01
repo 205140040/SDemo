@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<!--maven 聚合父项目,可以通过该项目聚合所有的子项目，一次打包所有 -->
+	<!--maven 聚合父项目,可以通过该项目聚合所有的子项目，一次打包所有,聚合和继承整理到一个模块中 -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.demo</groupId>
 	<artifactId>account-all</artifactId>
@@ -11,19 +11,68 @@
 	<url>http://maven.apache.org</url>
 	<!-- 聚合 -->
 	<modules>
-		<module>account-parent</module>
 		<module>account-info</module>
 		<module>account-persist</module>
 	</modules>
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+	<!--归类依赖version -->
+	<properties>
+		<springframework.version>4.1.6.RELEASE</springframework.version>
+		<junit.version>3.8.1</junit.version>
+		<fastjson.version>1.2.7</fastjson.version>
+		<maven-source-plugin.version>2.4</maven-source-plugin.version>
+	</properties>
+	<!--可灵活配置的依赖管理 :该处声明的依赖不会导入到子类中 ，但是子类可以继承该依赖的属性，自定义导入需要的依赖,方便管理依赖的version -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!--添加fastjson的依赖 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<!--spring依赖，使用归类依赖，将version定义为一个属性 -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
 	<build>
 		<finalName>account-all</finalName>
+			<!--插件管理 -->
+		<pluginManagement>
+			<plugins>
+				<!-- 生成sources源码包的插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+					<!-- 执行配置 -->
+					<executions>
+						<execution>
+							<id>attach-source</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

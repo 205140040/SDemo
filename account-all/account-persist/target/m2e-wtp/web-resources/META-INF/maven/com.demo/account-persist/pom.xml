@@ -4,9 +4,8 @@
   	<!-- 设置父模块 -->
 	<parent>
 		<groupId>com.demo</groupId>
-		<artifactId>account-parent</artifactId>
+		<artifactId>account-all</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../account-parent/pom.xml</relativePath>
 	</parent>
   
 <!--   <groupId>com.demo</groupId> -->
