@@ -13,6 +13,7 @@
 	<modules>
 		<module>account-info</module>
 		<module>account-persist</module>
+		<module>account-test</module>
 	</modules>
 	<!--归类依赖version -->
 	<properties>
@@ -74,5 +75,26 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		
+		<plugins>
+			<!--  跳过测试代码编译-->
+			<!-- <plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-complier-plugin</artifactId>
+					<version>2.1</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+			</plugin> -->
+			<!-- 跳过测试 -->
+			<!-- <plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<skipExec>true</skipExec>
+					</configuration>
+			</plugin> -->
+		</plugins>
 	</build>
 </project>

@@ -68,7 +68,30 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 		</dependency>
+		
+		<!--导入nexus自己上传的第三方jar  -->
+		<dependency>
+		  <groupId>com.demo</groupId>
+		  <artifactId>mysql-connector-java</artifactId>
+		  <version>5.0.3</version>
+		  <classifier>bin</classifier>
+		</dependency>
 	</dependencies>
+	
+	<!-- 使用maven部署构件至nexus -->
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>nexus-releases</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>nexus-snapshots</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
 	<build>
 		<finalName>account-info</finalName>
 		<!-- 自定义绑定插件 -->
