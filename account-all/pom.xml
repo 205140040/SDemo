@@ -14,6 +14,8 @@
 		<module>account-info</module>
 		<module>account-persist</module>
 		<module>account-test</module>
+		<module>account-service</module>
+		<module>account-web</module>
 	</modules>
 	<!--归类依赖version -->
 	<properties>
@@ -21,6 +23,8 @@
 		<junit.version>3.8.1</junit.version>
 		<fastjson.version>1.2.7</fastjson.version>
 		<maven-source-plugin.version>2.4</maven-source-plugin.version>
+		<servlet-api.version>3.0.1</servlet-api.version>
+		<jsp-api.version>2.2</jsp-api.version>
 	</properties>
 	<!--可灵活配置的依赖管理 :该处声明的依赖不会导入到子类中 ，但是子类可以继承该依赖的属性，自定义导入需要的依赖,方便管理依赖的version -->
 	<dependencyManagement>
@@ -49,12 +53,25 @@
 				<artifactId>spring-beans</artifactId>
 				<version>${springframework.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+				<!--不打包到服务器  -->
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
+				<!--不打包到服务器  -->
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 
 	</dependencyManagement>
 	<build>
-		<finalName>account-all</finalName>
-			<!--插件管理 -->
+		<!--插件管理 -->
 		<pluginManagement>
 			<plugins>
 				<!-- 生成sources源码包的插件 -->
@@ -75,26 +92,16 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		
+
 		<plugins>
-			<!--  跳过测试代码编译-->
-			<!-- <plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-complier-plugin</artifactId>
-					<version>2.1</version>
-					<configuration>
-						<skip>true</skip>
-					</configuration>
-			</plugin> -->
+			<!-- 跳过测试代码编译 -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-complier-plugin</artifactId> 
+				<version>2.1</version> <configuration> <skip>true</skip> </configuration> 
+				</plugin> -->
 			<!-- 跳过测试 -->
-			<!-- <plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.5</version>
-					<configuration>
-						<skipExec>true</skipExec>
-					</configuration>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+				<version>2.5</version> <configuration> <skipExec>true</skipExec> </configuration> 
+				</plugin> -->
 		</plugins>
 	</build>
 </project>
