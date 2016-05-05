@@ -19,6 +19,9 @@
 	</modules>
 	<!--归类依赖version -->
 	<properties>
+		<!-- 使用utf-8读取项目 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<springframework.version>4.1.6.RELEASE</springframework.version>
 		<junit.version>3.8.1</junit.version>
 		<fastjson.version>1.2.7</fastjson.version>

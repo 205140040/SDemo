@@ -26,9 +26,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8.1"/>
-    <property name="classworlds.conf" value="D:\workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf7905979592218481713.tmp"/>
+    <property name="classworlds.conf" value="D:\workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf975187730241071324.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.library.path" value="D:\Program Files\Java\jdk1.7.0_76\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\Java\jdk1.7.0_76\bin;D:\Program Files\Java\jdk1.7.0_76\jre\bin;D:\JAVASoft\apache-maven-3.2.5-bin\apache-maven-3.2.5\bin;C:\Users\admin\Desktop\nexus\nexus-2.8.1-01-bundle\nexus-2.8.1-01\bin\jsw\windows-x86-32;;."/>
+    <property name="java.library.path" value="D:\Program Files\Java\jdk1.7.0_76\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\Java\jdk1.7.0_76\bin;D:\Program Files\Java\jdk1.7.0_76\jre\bin;D:\JAVASoft\apache-maven-3.2.5-bin\apache-maven-3.2.5\bin;C:\Users\admin\Desktop\nexus\nexus-2.8.1-01-bundle\nexus-2.8.1-01\bin\jsw\windows-x86-32;D:\Program Files\SlikSvn\bin;D:\Program Files\TortoiseSVN\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -43,7 +43,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="D:\Program Files\Java\jdk1.7.0_76\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -s D:\JAVASoft\apache-maven-3.2.5-bin\apache-maven-3.2.5\conf\settings.xml clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -s D:\JAVASoft\apache-maven-3.2.5-bin\apache-maven-3.2.5\conf\settings.xml install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
