@@ -1,1 +1,5 @@
+com\demo\test\SpringResourceDemo.class
+com\demo\beanfactory\Person.class
 com\demo\controller\HelloController.class
+com\demo\classloadertest\ClassLoaderTest.class
+com\demo\beanfactory\BeanFactoryDemo.class
