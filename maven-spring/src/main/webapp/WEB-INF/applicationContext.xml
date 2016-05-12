@@ -32,5 +32,12 @@
 			expression="com/demo/test" />
 	</context:component-scan>
 
-
+	<!-- 读取属性文件 <context:property-placeholder file-encoding="UTF-8" location="classpath:*.properties" 
+		/> -->
+	<!-- 加密的属性文件，只能以下面方式读取 -->
+	<bean class="com.demo.propertyconvert.PropertyConvertConfiger">
+		<property name="location" value="classpath:jdbc.properties"></property>
+		<property name="fileEncoding" value="UTF-8"></property>
+	</bean>
+	<import resource="spring-mybatis.xml" />
 </beans>

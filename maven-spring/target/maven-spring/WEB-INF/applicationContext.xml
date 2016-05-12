@@ -32,5 +32,8 @@
 			expression="com/demo/test" />
 	</context:component-scan>
 
-
+	<!-- 读取属性文件 -->
+	<context:property-placeholder
+		file-encoding="UTF-8" location="classpath:*.properties" />
+	<import resource="spring-mybatis.xml" />
 </beans>
