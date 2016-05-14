@@ -1,6 +1,7 @@
 package com.demo.i18n;
 
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -32,6 +33,9 @@ public class LocaleDemo {
 		/**
 		 * 在资源文件中使用格式化串,{0}获取动态参数
 		 */
+		Object[] params={"小明",new Date()};
+		String cnString=new MessageFormat(zhBundle.getString("hello"),Locale.CHINA).format(params);
+		System.out.println("properties动态传参:"+cnString);
 	}
 
 }

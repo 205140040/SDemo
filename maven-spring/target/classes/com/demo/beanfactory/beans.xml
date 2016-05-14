@@ -26,6 +26,23 @@
 		<property name="name" value="露露"></property>
 		<property name="sex" value="哈哈哈"></property>
 	</bean>
-
-
+	<!-- 国际化 <bean id="resourceBundleMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
+		通过基础类名指定资源，相当于classpath <property name="basenames"> <list> <value>com/demo/i18n/res</value> 
+		</list> </property> </bean> -->
+	<!--可以定时刷新属性文件的国际化类,通过applicationContext把国际化加载为全局的 -->
+	<!-- <bean id="reloadableResourceBundleMessageSource" -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- 通过基础类名指定资源，相当于classpath -->
+		<property name="basenames">
+			<list>
+				<value>com/demo/i18n/res</value>
+			</list>
+		</property>
+		<!-- 单位为秒 -->
+		<property name="cacheSeconds" value="6"></property>
+	</bean>
+	<!-- 自定义监听器 -->
+	<bean class="com.demo.springlistener.MailSendListener"></bean>
+	<bean id="mailSender" class="com.demo.springlistener.MailSender"></bean>
 </beans>
