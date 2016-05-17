@@ -39,5 +39,6 @@ public class XmlAdvice {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("com/demo/aopdemo/spring-aop.xml");
 		IWaiterService waiterService=(IWaiterService)ctx.getBean("waitService");
 		waiterService.joinPointArround("露露", "啦啦啦啦");
+//		DataSourceTransactionManager
 	}
 }
