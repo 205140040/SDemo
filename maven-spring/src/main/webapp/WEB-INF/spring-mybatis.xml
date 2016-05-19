@@ -68,6 +68,35 @@
 		<property name="filters" value="stat" />
 	</bean>
 
+	<!-- 配置mybatis事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!--aop配置声明式事务 -->
+	<!-- 事务增强 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<!-- 事务属性定义 -->
+		<tx:attributes>
+			<!--tx:method 属性介绍，name:关联事务的方法， propagation：传播行为，islocation：隔离级别 -->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="select*" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut expression="execution(* com.demo.service.impl.*.*(..))"
+			id="txPointer" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="txPointer" />
+	</aop:config>
+
+	<!-- 2.通过注解配置的事务，启用 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 配置mybatis sqlSessionFactory，并扫描所有的mapper.xml -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
@@ -77,7 +106,7 @@
 		</property>
 	</bean>
 
-	<!-- mapperScanner -->
+	<!-- mapperScanner,将mapper转换为spring中的bean -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com/demo/dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
