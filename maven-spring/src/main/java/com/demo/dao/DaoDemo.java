@@ -11,6 +11,7 @@ public class DaoDemo {
 		 * 9.3.2spring事务管理器的实现类
 		 * 9.3.4事务的传播行为:1.required存在则加入，不存在，新建
 		 * 隔离级别：即允许胀读，幻读，等的隔离级别
+		 * 12.3在spring中使用mybatis
 		 */
 	}
 
