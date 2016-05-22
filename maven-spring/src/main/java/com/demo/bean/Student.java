@@ -1,33 +1,46 @@
 package com.demo.bean;
 
+import java.util.Date;
+
 public class Student {
-    private Integer id;
+	private Integer id;
 
-    private String name;
+	private String name;
 
-    private String sex;
+	private String sex;
 
-    public Integer getId() {
-        return id;
-    }
+	private Date bir;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getSex() {
-        return sex;
-    }
+	public void setName(String name) {
+		this.name = name == null ? null : name.trim();
+	}
 
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
-    }
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex == null ? null : sex.trim();
+	}
+
+	public Date getBir() {
+		return bir;
+	}
+
+	public void setBir(Date bir) {
+		this.bir = bir;
+	}
+
 }
