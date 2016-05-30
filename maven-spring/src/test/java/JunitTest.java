@@ -16,7 +16,7 @@ public class JunitTest {
 	 * @before注解，和@beforeClass注解不同，class注解是类级别的，每次只运行一次,
 	 *  运行测试时，初始化方法,每次运行都执行该方法
 	 *  @beforeClass一般初始化数据库连接
-	 *  5
+	 *  56
 	 */
 	//@BeforeClass
 	@Before
